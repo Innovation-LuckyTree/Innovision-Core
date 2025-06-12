@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: happy-play-core
+  labels:
+    app: happy-play-core
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: happy-play-core
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: happy-play-core
+    spec:
+      containers:
+        - name: happy-play-core
+          image: registry.gitlab.com/happyplay/happy-play/uat-happy-play-core:v1.2.7
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE
+              value: "false"
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/appsettings.Production.json
+              subPath: appsettings.Production.json
+      volumes:
+        - name: config-volume
+          configMap:
+            name: hp-core-appsettings-config # <-- name of your ConfigMap
+            items:
+              - key: appsettings.Production.json
+                path: appsettings.Production.json
+      imagePullSecrets:
+        - name: registry-secret

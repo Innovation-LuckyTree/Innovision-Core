@@ -1,0 +1,161 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hp-core-appsettings-config
+data:
+  appsettings.Production.json: |
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "ConnectionStrings": {
+        "CoreDb": "Data Source=192.168.3.73;Initial Catalog=HappyPlayV2;Persist Security Info=True;User ID=esatwriter;Password=Esatpt123456789!;TrustServerCertificate=True;MultiSubnetFailover=True;MultipleActiveResultSets=true;",
+        "SmsServer": "Data Source=happyplay-mssql-db-1.c8s6qej1664p.ap-southeast-1.rds.amazonaws.com,1433;Initial Catalog=SmsServer;Persist Security Info=True;User ID=mssql_happyplay;Password=18E095D40E2;TrustServerCertificate=True;MultiSubnetFailover=True;MultipleActiveResultSets=true;"
+      },
+      "SftpConfig": {
+        "Host": "192.168.3.76",
+        "Username": "sftpuser",
+        "Password": "Y2ej4Lks2D7ng2",
+        "Folder": "upload"
+      },
+      "AppConfig": {
+        "AppId": "1E276E2B-97D5-4B4A-9E34-DBCA1EED437E",
+        "MobileAppId": "1E276E2B-97D5-4B4A-9E34-DBCA1EED437E",
+        "IdentityAuthInfo": {
+          "Url": "http://happy-play-core-identity",
+          "ClientId": "3671aeea-e59f-429d-b3fd-3f832d191198",
+          "Resource": "1dce2b3a-595d-420e-93a9-07fc5a2347ee",
+          "ClientSecret": "GeMx7lAqLVIKli7qE3vnm0AdUhinsALjGZB6R5NG9kU="
+        },
+        "JwtConfig": {
+          "Audience": "https://localhost:7077",
+          "Issuer": "https://localhost:7077/",
+          "Key": "54/Mnoi4GJxAr5hIWXYjlhPF/JLgE1OLv/"
+        },
+        "CoreIdentityApiClient": {
+          "BaseAddressUrl": "http://happy-play-core-identity",
+          "ClientId": "592B5450-C477-4CD5-B70A-4A41BD961EF2",
+          "Resource": "1dce2b3a-595d-420e-93a9-07fc5a2347ee",
+          "ClientSecret": "GeMx7lAqLVIKli7qE3vnm0AdUhinsALjGZB6R5NG9kU=",
+          "Policies": {
+            "HttpCircuitBreaker": {
+              "DurationOfBreak": "00:01:00",
+              "ExceptionsAllowedBeforeBreaking": 20
+            },
+            "HttpRetry": {
+              "BackoffPower": 2,
+              "Count": 3
+            }
+          },
+          "Logging": {
+            "Enabled": true,
+            "MaxBodySize": 2048
+          }
+        },
+        "GameApiClient": {
+          "BaseAddressUrl": "https://uat-happyplay-api.ept.ph",
+          "ClientId": "592B5450-C477-4CD5-B70A-4A41BD961EF2",
+          "Resource": "1dce2b3a-595d-420e-93a9-07fc5a2347ee",
+          "ClientSecret": "GeMx7lAqLVIKli7qE3vnm0AdUhinsALjGZB6R5NG9kU=",
+          "Policies": {
+            "HttpCircuitBreaker": {
+              "DurationOfBreak": "00:01:00",
+              "ExceptionsAllowedBeforeBreaking": 20
+            },
+            "HttpRetry": {
+              "BackoffPower": 2,
+              "Count": 3
+            }
+          },
+          "Logging": {
+            "Enabled": true,
+            "MaxBodySize": 2048
+          }
+        },
+        "AccountServiceApiClient": {
+          "BaseAddressUrl": "http://happy-play-account-service",
+          "ClientId": "592B5450-C477-4CD5-B70A-4A41BD961EF2",
+          "Resource": "1dce2b3a-595d-420e-93a9-07fc5a2347ee",
+          "ClientSecret": "GeMx7lAqLVIKli7qE3vnm0AdUhinsALjGZB6R5NG9kU=",
+          "Policies": {
+            "HttpCircuitBreaker": {
+              "DurationOfBreak": "00:01:00",
+              "ExceptionsAllowedBeforeBreaking": 20
+            },
+            "HttpRetry": {
+              "BackoffPower": 2,
+              "Count": 3
+            }
+          },
+          "Logging": {
+            "Enabled": true,
+            "MaxBodySize": 2048
+          }
+        },
+        "PaymentApiClient": {
+          "BaseAddressUrl": "http://hp-payment-api",
+          "ClientId": "592B5450-C477-4CD5-B70A-4A41BD961EF2",
+          "Resource": "1dce2b3a-595d-420e-93a9-07fc5a2347ee",
+          "ClientSecret": "GeMx7lAqLVIKli7qE3vnm0AdUhinsALjGZB6R5NG9kU=",
+          "Policies": {
+            "HttpCircuitBreaker": {
+              "DurationOfBreak": "00:01:00",
+              "ExceptionsAllowedBeforeBreaking": 20
+            },
+            "HttpRetry": {
+              "BackoffPower": 2,
+              "Count": 3
+            }
+          },
+          "Logging": {
+            "Enabled": true,
+            "MaxBodySize": 2048
+          }
+        },
+        "WebsocketApiClient": {
+          "BaseAddressUrl": "http://hp-websockets",
+          "ClientId": "592B5450-C477-4CD5-B70A-4A41BD961EF2",
+          "Resource": "1dce2b3a-595d-420e-93a9-07fc5a2347ee",
+          "ClientSecret": "GeMx7lAqLVIKli7qE3vnm0AdUhinsALjGZB6R5NG9kU=",
+          "Policies": {
+            "HttpCircuitBreaker": {
+              "DurationOfBreak": "00:01:00",
+              "ExceptionsAllowedBeforeBreaking": 20
+            },
+            "HttpRetry": {
+              "BackoffPower": 2,
+              "Count": 3
+            }
+          },
+          "Logging": {
+            "Enabled": true,
+            "MaxBodySize": 2048
+          }
+        },
+        "MessageBrokerClient": {
+          "BaseAddressUrl": "http://happy-play-message-broker",
+          "ClientId": "592B5450-C477-4CD5-B70A-4A41BD961EF2",
+          "Resource": "1dce2b3a-595d-420e-93a9-07fc5a2347ee",
+          "ClientSecret": "GeMx7lAqLVIKli7qE3vnm0AdUhinsALjGZB6R5NG9kU=",
+          "Policies": {
+            "HttpCircuitBreaker": {
+              "DurationOfBreak": "00:01:00",
+              "ExceptionsAllowedBeforeBreaking": 20
+            },
+            "HttpRetry": {
+              "BackoffPower": 2,
+              "Count": 3
+            }
+          },
+          "Logging": {
+            "Enabled": true,
+            "MaxBodySize": 2048
+          }
+        },
+        "UploadPath": "D:\\Projects\\files",
+        "GMFCommission": 9.50
+      }
+    }

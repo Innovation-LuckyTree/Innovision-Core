@@ -1,0 +1,55 @@
+namespace Innovision.Core.Application.Common.Contants;
+
+public class NotificationNames
+{
+        public const string AssignDefaultFM = "AssignDefaultFM";
+        public const string AssignDefaultAgent = "AssignDefaultAgent";
+        public const string NewVerification = "NewVerification";
+        public const string NewCreditRequestFromCompany = "NewCreditRequestFromCompany";
+        public const string NewCreditRequestsFromUsers = "NewCreditRequestsFromUsers";
+        public const string ApproveCreditRequest = "ApproveCreditRequest";
+        public const string DeclineCreditRequest = "DeclineCreditRequest";
+        public const string RegularGamePrizeMultiplier = "RegularGamePrizeMultiplier";
+        public const string PostGameResults = "PostGameResults";
+        public const string NewAnnouncement = "NewAnnouncement";
+        public const string UpdateLivestreamLink = "UpdateLivestreamLink";
+        public const string UpdateOnSubmittedTicket = "UpdateOnSubmittedTicket";
+        public const string UpdateTermsOfUse = "UpdateTermsOfUse";
+        public const string UpdatePrivacyPolicy = "UpdatePrivacyPolicy";
+        public const string NewDepositRequestFromDownline = "NewDepositRequestFromDownline";
+        public const string ApproveDepositRequest = "ApproveDepositRequest";
+        public const string DeclineDepositRequest = "DeclineDepositRequest";
+        public const string NewWithdrawalRequestFromDownline = "NewWithdrawalRequestFromDownline";
+        public const string ApproveWithdrawalRequest = "ApproveWithdrawalRequest";
+        public const string DeclineWithdrawalRequest = "DeclineWithdrawalRequest";
+        public const string HourlyCommission = "HourlyCommission";
+        public const string DailyCommission = "DailyCommission";
+        public const string NewRegistration = "NewRegistration";
+        public const string UpdateReportedIssue = "UpdateReportedIssue";
+        public const string NewDepositRequestsFromBranch = "NewDepositRequestsFromBranch";
+        public const string NewDepositRequestsFromUsers = "NewDepositRequestsFromUsers";
+        public const string NewWithdrawalRequestsFromUsers = "NewWithdrawalRequestsFromUsers";
+        public const string NewTicket = "NewTicket";
+        public const string NewFAQ = "NewFAQ";
+        public const string ForgotPassword = "ForgotPassword";
+        public const string GameAnnouncement = "GameAnnouncement";
+        public const string UpdateGameSubmittedTicket = "UpdateGameSubmittedTicket";
+        public const string DeckPurchase = "DeckPurchase";
+        public const string MagicResult = "MagicResult";
+        public const string DrawResultPosted = "DrawResultPosted";
+        public const string YouWin = "YouWin";
+        public const string NewDepositRequest = "NewDepositRequest";
+        public const string NewWithdrawalRequest = "NewWithdrawalRequest";
+        public const string SuccessfulDeposit = "SuccessfulDeposit";
+        public const string SuccessfulWithdrawal = "SuccessfulWithdrawal";
+        public const string UnclaimedJackpotPrize = "UnclaimedJackpotPrize";
+        public const string ApproveKYCRequest = "ApproveKYCRequest";
+        public const string DeclineKYCRequest = "DeclineKYCRequest";
+        public const string ProfileUpdateTermsOfUse = "ProfileUpdateTermsOfUse";
+        public const string NewAppVersion = "NewAppVersion";
+        public const string SuccessfulQuickRegistration = "SuccessfulQuickRegistration";
+        public const string SuccessfulRegistrationForPlayer = "SuccessfulRegistrationForPlayer";
+        public const string SuccessfulRegistrationForAgents = "SuccessfulRegistrationForAgents";
+        public const string UpdateMobileNumber = "UpdateMobileNumber";
+        public const string UpdatePassword = "UpdatePassword";
+}

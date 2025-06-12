@@ -1,0 +1,489 @@
+[
+  {
+    "type": "GameSite",
+    "name": "AssignDefaultGSM",
+    "title": "Default Game Site Manager Assigned",
+    "notifications": "You have been assigned as the default Game Site Manager",
+    "url": "/gamesites"
+  },
+  {
+    "type": "UserVerification",
+    "name": "NewVerification",
+    "title": "Pending KYC Application",
+    "notifications": "A new KYC application is pending. Review it now!",
+    "url": "/user/verification"
+  },
+  {
+    "type": "CreditFactory",
+    "name": "NewCreditRequestFromCompany",
+    "title": "Pending Credit Request From Company",
+    "notifications": "{0} is requesting {1} credits.",
+    "parameters": "companyId, amount",
+    "url": "/wallet/factory"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "DirectSendCredit",
+    "title": "Direct Send Credit",
+    "notifications": "You have received {0} credit amount from {1}.",
+    "parameters": "amount, userId",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "DirectTransferCredit",
+    "title": "Transfer Credit to Wallet Account",
+    "notifications": "You have transferred you credit balance amounting {0} to your wallet account.",
+    "parameters": "amount",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "ApproveWithdrawalCreditRequest",
+    "title": "Approved Withdrawal Request",
+    "notifications": "Your {0} credit withdrawal request has been approved by {1}. Check your credit now!",
+    "parameters": "amount, userId",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "NewBonusRequestsFromUsers",
+    "title": "Pending Bonus Request",
+    "notifications": "{0} is requesting {1} credits.",
+    "parameters": "userId, amount",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "ApproveBonusCreditRequest",
+    "title": "Approved Bonus Request",
+    "notifications": "Your {0} bonus request has been approved. Check your bonus now!",
+    "parameters": "amount",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "NewCreditRequestsFromUsers",
+    "title": "Pending Credit Request From User",
+    "notifications": "{0} is requesting {1} credits.",
+    "parameters": "userId, amount",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "ApproveCreditRequest",
+    "title": "Approved Credit Request",
+    "notifications": "Your {0} credit request has been approved. Check your wallet now!",
+    "parameters": "amount",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "LoadingStation",
+    "name": "DeclineCreditRequest",
+    "title": "Declined Credit Request ",
+    "notifications": "Your credit request has been declined with the following remarks: {0}",
+    "parameters": "declineRemarks",
+    "url": "/wallet/loading"
+  },
+  {
+    "type": "MechanicsSettings",
+    "name": "RegularGamePrizeMultiplier",
+    "title": "Regular Game Prize Multiplier Updated",
+    "notifications": "The Regular Game prize multiplier has been updated from {0} to {1}",
+    "parameters": "oldAmount, newAmount",
+    "url": "/mechanics/settings"
+  },
+  {
+    "type": "GameResults",
+    "name": "PostGameResults",
+    "title": "Game Result Posted",
+    "notifications": "The official game result for {0} is {1}",
+    "parameters": "drawTime, winningCombination",
+    "url": "/game/results"
+  },
+  {
+    "type": "Announcements",
+    "name": "NewAnnouncement",
+    "title": "New Announcement",
+    "notifications": "Announcement: {0} \n {1}",
+    "parameters": "announcement.title, announcement.description",
+    "url": "/announcements"
+  },
+  {
+    "type": "Livestream",
+    "name": "UpdateLivestreamLink",
+    "title": "Livestream Link Updated",
+    "notifications": "Livestream link has been updated",
+    "url": "/livestream"
+  },
+  {
+    "type": "ReportAnIssue",
+    "name": "UpdateReportedIssue",
+    "title": "Ticket Updated",
+    "notifications": "Your ticket status has been updated to {0}. Check it now!",
+    "parameters": "ticketStatus",
+    "url": "/system/issues"
+  },
+  {
+    "type": "TermsOfUse",
+    "name": "UpdateTermsOfUse",
+    "title": "Terms of Use Updated",
+    "notifications": "The Happy Play Terms of Use has been updated. Check it now!",
+    "url": "/system/terms"
+  },
+  {
+    "type": "PrivacyPolicy",
+    "name": "UpdatePrivacyPolicy",
+    "title": "Privacy Policy Updated",
+    "notifications": "The Happy Play Privacy Policy has been updated. Read it now!",
+    "url": "/system/privacy-policy"
+  },
+  {
+    "type": "Wallet",
+    "name": "NewDepositRequestFromDownline",
+    "title": "Pending Deposit Request",
+    "notifications": "{0} is requesting to deposit {1}",
+    "parameters": "userId, amount",
+    "url": "/wallet"
+  },
+  {
+    "type": "Wallet",
+    "name": "ApproveDepositRequest",
+    "title": "Approved Deposit Request",
+    "notifications": "Congratulations! Your {0} deposit request has been approved",
+    "parameters": "amount",
+    "url": "/wallet"
+  },
+  {
+    "type": "Wallet",
+    "name": "DeclineDepositRequest",
+    "title": "Declined Deposit Request",
+    "notifications": "Sorry, your {0} deposit request has been declined",
+    "parameters": "amount",
+    "url": "/wallet"
+  },
+  {
+    "type": "Wallet",
+    "name": "NewWithdrawalRequestFromDownline",
+    "title": "Pending Withdrawal Request From Your Downline",
+    "notifications": "{0} is requesting to withdraw {1}",
+    "parameters": "userId, amount",
+    "url": "/wallet"
+  },
+  {
+    "type": "Wallet",
+    "name": "ApproveCrediWithdrawalRequest",
+    "title": "Approved Credit Withdrawal Request",
+    "notifications": "Your {0} withdrawal request has been approved by {1}.",
+    "parameters": "amount, userId",
+    "url": "/wallet"
+  },
+  {
+    "type": "Wallet",
+    "name": "DeclineCreditWithdrawalRequest",
+    "title": "Declined Credit Withdrawal Request",
+    "notifications": "Sorry, your {0} withdrawal request has been declined with the following remarks: \n {1}.",
+    "parameters": "amount, declineRemarks",
+    "url": "/wallet"
+  },
+  {
+    "type": "Downline",
+    "name": "NewRegistration",
+    "title": "Pending Registration",
+    "notifications": "A new registration is pending for your approval",
+    "url": "/downline"
+  },
+  {
+    "type": "ReportAProblem",
+    "name": "UpdateOnSubmittedTicket",
+    "title": "Ticket Updates",
+    "notifications": "Your ticket status has been updated to {0}. Check your ticket now!",
+    "parameters": "ticketStatus",
+    "url": "/support"
+  },
+  {
+    "type": "Deposits",
+    "name": "NewDepositRequestsFromBranch",
+    "title": "New Deposit Request From Game Site",
+    "notifications": "{0} is requesting to deposit {1}.",
+    "parameters": "branchName, amount",
+    "url": "/deposits"
+  },
+  {
+    "type": "Deposits",
+    "name": "NewDepositRequestsFromUsers",
+    "title": "New Deposit Request From Users",
+    "notifications": "{0} is requesting {1} credits.",
+    "parameters": "userId, amount",
+    "url": "/deposits"
+  },
+  {
+    "type": "Withdrawals",
+    "name": "NewWithdrawalRequestsFromUsers",
+    "title": "New Withdrawal Request",
+    "notifications": "{0} is requesting to withdraw {1}.",
+    "parameters": "userId, amount",
+    "url": "/withdrawals"
+  },
+  {
+    "type": "Withdrawals",
+    "name": "ApproveWithdrawalRequest",
+    "title": "Approved Withdrawal Request",
+    "notifications": "Your {0} withdrawal request has been approved by {1}.",
+    "parameters": "amount, userId",
+    "url": "/withdrawals"
+  },
+  {
+    "type": "Withdrawals",
+    "name": "DeclineWithdrawalRequest",
+    "title": "Declined Withdrawal Request",
+    "notifications": "Sorry, your {0} withdrawal request has been declined with the following remarks: \n {1}.",
+    "parameters": "amount, declineRemarks",
+    "url": "/withdrawals"
+  },
+  {
+    "type": "Tickets",
+    "name": "NewTicket",
+    "title": "New Ticket Reported",
+    "notifications": "A new ticket has been reported",
+    "url": "/tickets"
+  },
+  {
+    "type": "FAQ",
+    "name": "NewFAQ",
+    "title": "New FAQ Added",
+    "notifications": "A new FAQ has been created",
+    "url": "/faqs"
+  },
+  {
+    "type": "Onboarding",
+    "name": "ForgotPassword",
+    "title": "Your Password has been changed",
+    "notifications": "Your password was changed on {0}",
+    "parameters": "dateTime",
+    "url": "/"
+  },
+  {
+    "type": "Home/Play",
+    "name": "GameAnnouncement",
+    "title": "New Announcement",
+    "notifications": "{0} \n {1}",
+    "parameters": "announcement.title, announcement.description",
+    "url": "/"
+  },
+  {
+    "type": "Home/Play",
+    "name": "UpdateGameSubmittedTicket",
+    "title": "Ticket Updates",
+    "notifications": "Your ticket status has been updated to {0}. Check your ticket now!",
+    "parameters": "ticketStatus",
+    "url": "/"
+  },
+  {
+    "type": "Play",
+    "name": "DeckPurchase",
+    "title": "Purchase Successful!",
+    "notifications": "You have purchased the following items from the Game Store: \n Items: {0} || Total Amount: {1} ",
+    "parameters": "totalItemCount, totalAmount",
+    "url": "/"
+  },
+  {
+    "type": "Play",
+    "name": "MagicResult",
+    "title": "Magic Win result for {0} has been posted!",
+    "notifications": " The Magic Win combination for this draw is {1}. Beat the odds with the new Magic Combination. Play Now!",
+    "parameters": "drawTime, winningCombination ",
+    "url": "/"
+  },
+  {
+    "type": "Play",
+    "name": "DrawResultPosted",
+    "title": "Official {0} draw result is out!",
+    "notifications": "The winning combination for this draw is {1}",
+    "parameters": "drawTime, winningCombination",
+    "url": "/"
+  },
+  {
+    "type": "Play",
+    "name": "RegularWinNotif",
+    "title": "Congratulations You Won!",
+    "notifications": "Congratulations! You won a regular prize worth {0} in the {1} game for the {2} draw time. This prize will be credited to your main wallet directly. Check your wallet now!",
+    "parameters": "regularPrize,  gameType, drawTime",
+    "url": "/"
+  },
+  {
+    "type": "Play",
+    "name": "JackpotWinNotif",
+    "title": "Congratulations You Won a Jackpot Prize!",
+    "notifications": "Congratulations! You won a jackpot prize worth Php {0} in the {1} game for the {2} draw time. Check your winning ticket now and go to the nearest office/gamesite to claim your winnings!",
+    "parameters": "jackpotPrize,  jackpotGameType, drawTime",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "NewDepositRequest",
+    "title": "Pending Deposit Request",
+    "notifications": "Your {0} deposit request have been submitted",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "NewWithdrawalRequest",
+    "title": "Pending Withdrawal Request",
+    "notifications": "Your {0} withdrawal request have been submitted",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "SuccessfulDeposit",
+    "title": "Successful Deposit Request",
+    "notifications": "Your {0} deposit request has been approved. Check your wallet now!",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "SuccessfulWithdrawal",
+    "title": "Successful Withdrawal Request",
+    "notifications": "Your {0} withdrawal request has been approved.",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "UnclaimedJackpotPrize",
+    "title": "You have unclaimed jackpot prize",
+    "notifications": "You have a pending jackpot prize! Please go to your registered game site to claim your prize",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "ApproveKYCRequest",
+    "title": "Your KYC application has been approved",
+    "notifications": "Congratulations! You are now a fully verified user!",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "ReminderForKYCRequestDay1",
+    "title": "Reminder: Please submit your KYC verification application",
+    "notifications": "Complete Your KYC application within 3 days upon registration to avoid account suspension.",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "ReminderForKYCRequestDay2",
+    "title": "Reminder: Please submit your KYC verification application",
+    "notifications": "You still have 1 day to complete your KYC application. Submit now to avoid account suspension!",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "ReminderForKYCRequestDay3",
+    "title": "Last Reminder: Please submit your KYC verification application",
+    "notifications": "It's your last day to complete your KYC application. Submit now to avoid account suspension!",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "DeclineKYCRequest",
+    "title": "Your KYC application has been declined",
+    "notifications": "Your KYC application has been declined with the following remarks: {0} ",
+    "parameters": "declineRemarks",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "ProfileUpdateTermsOfUse",
+    "title": "Terms Of Use Updated",
+    "notifications": "The Happy Play Terms of Use has been updated",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "NewAppVersion",
+    "title": "New Mobile App Version is available",
+    "notifications": "Download the latest version now to experience new features!",
+    "url": "/"
+  },
+  {
+    "type": "Registration",
+    "name": "SuccessfulQuickRegistration",
+    "title": "Successful Quick Registration",
+    "notifications": "Congratulations! Your quick registration was successful.",
+    "url": "/"
+  },
+  {
+    "type": "Registration",
+    "name": "SuccessfulRegistrationForPlayer",
+    "title": "Successful Player Registration",
+    "notifications": "Welcome to Happy Play! Your registration was successful.",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "UpdateMobileNumber",
+    "title": "Mobile Number Updated",
+    "notifications": "You have successfully updated your mobile number to {0}.",
+    "parameters": "mobileNumber",
+    "url": "/"
+  },
+  {
+    "type": "Profile",
+    "name": "UpdatePassword",
+    "title": "Password Updated!",
+    "notifications": "You have successfully updated your password on {0}",
+    "parameters": "date",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "ProcessedGcashDeposit",
+    "title": "Processed Gcash Deposit",
+    "notifications": "Your {0} GCash deposit is being processed. ",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "ApprovedGcashDeposit",
+    "title": "Approved Gcash Deposit",
+    "notifications": "Your {0} GCash deposit has been completed. ",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "DeclinedGcashDeposit",
+    "title": "Declined Gcash Deposit",
+    "notifications": "Your {0} Gcash deposit attempt has been failed. ",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "ProcessedGcashWithdrawal",
+    "title": "Processed Gcash Withdrawal",
+    "notifications": "Your {0} GCash withdrawal is being processed. ",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "ApprovedGcashWithdrawal",
+    "title": "Approved Gcash Withdrawal",
+    "notifications": "Your {0} GCash withdrawal has been completed. ",
+    "parameters": "amount",
+    "url": "/"
+  },
+  {
+    "type": "Wallet",
+    "name": "DeclinedGcashWithdawal",
+    "title": "Declined Gcash Withdawal",
+    "notifications": "Your {0} Gcash withdrawal attempt has been failed. ",
+    "parameters": "amount",
+    "url": "/"
+  }
+]
