@@ -13,6 +13,7 @@ public class Account : Address
     public Guid AccountCreditId { get; set; } = Guid.NewGuid();
     public Guid AccountBonusId { get; set; } = Guid.NewGuid();
     public Guid UserId { get; set; }
+    public string UserName { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string MiddleName { get; set; }
