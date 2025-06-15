@@ -15,6 +15,7 @@ using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Commands.UpdateU
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlineAgents;
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlineCounts;
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlinePlayers;
+using Innovision.Core.Application.Requests.Users.Commands.BasicRegistration;
 using Innovision.Core.Application.Requests.Users.Commands.BulkCreateUser;
 using Innovision.Core.Application.Requests.Users.Commands.CreateSystemUser;
 using Innovision.Core.Application.Requests.Users.Commands.UpdateAddress;
@@ -63,6 +64,22 @@ namespace Innovision.Core.API.Controllers
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
+        }
+
+        /// <summary>
+        /// 
+        /// Player basic registration
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        [HttpPost("basic/registration")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Post([FromBody] BasicRegistrationCommand command, CancellationToken cancellationToken)
+        {
+            var result = await Mediator.Send(command, cancellationToken);
+            return (result.Success) ? Ok(result) : BadRequest(result);
         }
 
         /// <summary>
