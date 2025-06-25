@@ -7,6 +7,7 @@ namespace Innovision.Core.Application.Interfaces;
 public interface ICoreDbContext
 {
     DbSet<Account> Accounts { get; set; }
+    DbSet<Address> Addresses { get; set; }
     DbSet<Branch> Branches { get; set; }
     DbSet<UserType> UserTypes { get; set; }
     DbSet<Game> Games { get; set; }

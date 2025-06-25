@@ -35,11 +35,11 @@ namespace Innovision.Core.Application.Requests.Branches.Commands.UpdateBranch
                     throw new Exception("Branch not found!");
 
                 branch.BranchName = request.BranchName;
-                branch.Region = request.Region;
-                branch.Province = request.Province;
-                branch.Municipality = request.Municipality;
-                branch.Barangay = request.Barangay;
-                branch.StreetOrPurok = request.StreetOrPurok;
+                branch.Address.Region = request.Region;
+                branch.Address.Province = request.Province;
+                branch.Address.Municipality = request.Municipality;
+                branch.Address.Barangay = request.Barangay;
+                branch.Address.StreetOrPurok = request.StreetOrPurok;
 
                 await _dbContext.SaveChangesAsync(cancellationToken);
 

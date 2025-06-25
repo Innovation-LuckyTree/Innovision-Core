@@ -25,9 +25,9 @@ public class PlayerAccountDto : IMapFrom<Account>
     public int BranchId { get; set; }
     public string BranchName { get; set; }
     [JsonIgnore]
-    public  DateTimeOffset? LastSetPassword { get; set; }
+    public DateTimeOffset? LastSetPassword { get; set; }
     [JsonIgnore]
-    public  DateTimeOffset DateCreated { get; set; }
+    public DateTimeOffset DateCreated { get; set; }
     [JsonIgnore]
     public string BranchStreet { get; set; }
     [JsonIgnore]
@@ -50,7 +50,7 @@ public class PlayerAccountDto : IMapFrom<Account>
         }
     }
 
-    public  DateTimeOffset LastPasswordChange
+    public DateTimeOffset LastPasswordChange
     {
         get
         {
@@ -75,10 +75,10 @@ public class PlayerAccountDto : IMapFrom<Account>
             .ForMember(t => t.PaymentAccount, f => f.MapFrom(src => src.PaymentAccountId))
             .ForMember(t => t.BranchId, f => f.MapFrom(src => src.BranchId))
             .ForMember(t => t.BranchName, f => f.MapFrom(src => src.Branch.BranchName))
-            .ForMember(t => t.BranchStreet, f => f.MapFrom(src => src.Branch.StreetOrPurok))
-            .ForMember(t => t.BranchBarangay, f => f.MapFrom(src => src.Branch.Barangay))
-            .ForMember(t => t.BranchMunicipality, f => f.MapFrom(src => src.Branch.Municipality))
-            .ForMember(t => t.BranchProvince, f => f.MapFrom(src => src.Branch.Province))
+            .ForMember(t => t.BranchStreet, f => f.MapFrom(src => src.Branch.Address.StreetOrPurok))
+            .ForMember(t => t.BranchBarangay, f => f.MapFrom(src => src.Branch.Address.Barangay))
+            .ForMember(t => t.BranchMunicipality, f => f.MapFrom(src => src.Branch.Address.Municipality))
+            .ForMember(t => t.BranchProvince, f => f.MapFrom(src => src.Branch.Address.Province))
             .ForMember(t => t.IsVerified, f => f.MapFrom(src => src.IsVerified))
             .ForMember(t => t.IsDeclined, f => f.MapFrom(src => src.IsDeclined))
             .ForMember(t => t.ForVerification, f => f.MapFrom(src => src.ForVerification))

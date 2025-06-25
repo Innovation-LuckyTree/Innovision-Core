@@ -69,7 +69,7 @@ public class CreateBranchCommandHandler : IRequestHandler<CreateBranchCommand, A
                 branch.DefaultAccountId = dfAccountId;
 
                 await _dbContext.SaveChangesAsync(cancellationToken);
-            } 
+            }
             else
             {
                 // Build Default GSM
@@ -100,16 +100,14 @@ public class CreateBranchCommandHandler : IRequestHandler<CreateBranchCommand, A
         new Branch
         {
             BranchName = request.BranchName,
-            Region = request.Region,
-            Province = request.Province,
-            Municipality = request.Municipality,
-            Barangay = request.Barangay,
-            StreetOrPurok = request.StreetOrPurok,
-            PermanentRegion = request.Region,
-            PermanentProvince = request.Province,
-            PermanentMunicipality = request.Municipality,
-            PermanentBarangay = request.Barangay,
-            PermanentStreetOrPurok = request.StreetOrPurok,
+            Address = new Address
+            {
+                Region = request.Region,
+                Province = request.Province,
+                Municipality = request.Municipality,
+                Barangay = request.Barangay,
+                StreetOrPurok = request.StreetOrPurok
+            },
             BranchCode = Guid.NewGuid().ToString().Split('-')[0].ToUpper(),
             IsActive = true,
             IsMain = false,

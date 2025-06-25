@@ -1,6 +1,8 @@
+using Innovision.Core.Domain.Common;
+
 namespace Innovision.Core.Domain.Entity;
 
-public class Account : Address
+public class Account : AuditableEntity
 {
     public Account()
     {
@@ -52,7 +54,13 @@ public class Account : Address
     public string PaymentAccountId { get; set; }
     public DateTime? LastSetPassword { get; set; }
     public bool ForVerification { get; set; }
+    public string ScreenName { get; set; }
+    public int Level { get; set; } = 1;
+    public long? PresentAddressId { get; set; }
+    public long? PermanentAddressId { get; set; }
 
+    public virtual Address PresentAddress { get; set; }
+    public virtual Address PermanentAddress { get; set; }
     public virtual Branch Branch { get; set; }
     public virtual UserType UserType { get; set; }
     public virtual AccountSetting AccountSetting { get; set; }

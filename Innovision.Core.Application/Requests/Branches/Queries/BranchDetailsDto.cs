@@ -35,7 +35,7 @@ namespace Innovision.Core.Application.Requests.Branches.Queries
                 .ForMember(t => t.AcountingUserCount, f => f.MapFrom(src => src.Account.Where(m => m.UserType.GroupType == 1).Count()))
                 .ForMember(t => t.SupportUserCount, f => f.MapFrom(src => src.Account.Where(m => m.UserType.GroupType == 2).Count()))
 
-                .ForMember(t => t.Address, f => f.MapFrom(src => src.Region + ", " + src.Province + ", " + src.Municipality + ", " + src.Barangay))
+                .ForMember(t => t.Address, f => f.MapFrom(src => src.Address.Region + ", " + src.Address.Province + ", " + src.Address.Municipality + ", " + src.Address.Barangay))
                 .ForMember(t => t.CreatedOn, f => f.MapFrom(src => src.CreatedOn))
                 ;
         }

@@ -60,10 +60,10 @@ public class GetPlayersUnusedDto : IMapFrom<Account>
             .ForMember(t => t.BackIdPath, f => f.MapFrom(src => src.BackIdPath))
             .ForMember(t => t.BranchId, f => f.MapFrom(src => src.BranchId))
             .ForMember(t => t.BranchName, f => f.MapFrom(src => src.Branch.BranchName))
-            .ForMember(t => t.BranchStreet, f => f.MapFrom(src => src.Branch.StreetOrPurok))
-            .ForMember(t => t.BranchBarangay, f => f.MapFrom(src => src.Branch.Barangay))
-            .ForMember(t => t.BranchMunicipality, f => f.MapFrom(src => src.Branch.Municipality))
-            .ForMember(t => t.BranchProvince, f => f.MapFrom(src => src.Branch.Province))
+            .ForMember(t => t.BranchStreet, f => f.MapFrom(src => src.Branch.Address.StreetOrPurok))
+            .ForMember(t => t.BranchBarangay, f => f.MapFrom(src => src.Branch.Address.Barangay))
+            .ForMember(t => t.BranchMunicipality, f => f.MapFrom(src => src.Branch.Address.Municipality))
+            .ForMember(t => t.BranchProvince, f => f.MapFrom(src => src.Branch.Address.Province))
             .ForMember(t => t.IsVerified, f => f.MapFrom(src => src.IsVerified))
             .ForMember(t => t.DateCreated, f => f.MapFrom(src => src.CreatedOn));
     }

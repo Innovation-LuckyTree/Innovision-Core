@@ -1,18 +1,13 @@
 ﻿using Innovision.Core.Application.Requests.Accounts.Users.AccountApproval.Commands;
 using Innovision.Core.Application.Requests.Accounts.Users.AgentAndPlayer.Commands.UserRegistration;
-using Innovision.Core.Application.Requests.Accounts.Users.AgentAndPlayer.Queries.GetAgents;
 using Innovision.Core.Application.Requests.Accounts.Users.AgentAndPlayer.Queries.GetPlayers;
-using Innovision.Core.Application.Requests.Accounts.Users.MasterAgent.Commands.CreateMasterAgent;
-using Innovision.Core.Application.Requests.Accounts.Users.MasterAgent.Queries.GetMasterAgents;
 using Innovision.Core.Application.Requests.Accounts.Users.Operator.Commands;
 using Innovision.Core.Application.Requests.Accounts.Users.Operator.Queries.GetOperator;
 using Innovision.Core.Application.Requests.Users.AccountApproval.Commands;
 using Innovision.Core.Application.Requests.Users.AccountApproval.Commands.RequestUserVerification;
 using Innovision.Core.Application.Requests.Users.AccountApproval.Queries.GetUsersForApprovalAll;
 using Innovision.Core.Application.Requests.Users.AccountApproval.Queries.GetUsersForApprove;
-using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Commands.RecruiterRegistration;
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Commands.UpdateUserByAccountObjectId;
-using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlineAgents;
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlineCounts;
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlinePlayers;
 using Innovision.Core.Application.Requests.Users.Commands.BasicRegistration;
@@ -26,10 +21,7 @@ using Innovision.Core.Application.Requests.Users.Commands.UpdateProfileImage;
 using Innovision.Core.Application.Requests.Users.Commands.UpdateProofInfo;
 using Innovision.Core.Application.Requests.Users.Commands.UpdateUserDownline;
 using Innovision.Core.Application.Requests.Users.Commands.UpdateUserStatuses;
-using Innovision.Core.Application.Requests.Users.MasterAgent.Queries.GetCompanyGFM;
 using Innovision.Core.Application.Requests.Users.Operator.Queries.GetMainOperator;
-using Innovision.Core.Application.Requests.Users.Queries.GetAgentsByBranchId;
-using Innovision.Core.Application.Requests.Users.Queries.GetDefaultAgent;
 using Innovision.Core.Application.Requests.Users.Queries.GetDownlineUsers;
 using Innovision.Core.Application.Requests.Users.Queries.GetFullyVerifiedUsers;
 using Innovision.Core.Application.Requests.Users.Queries.GetFullyVerifiedUsersExport;
@@ -67,9 +59,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Player basic registration
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -83,9 +73,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Agent and Player registration
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -99,25 +87,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
-        /// recruiter registration
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("recruiter/registration")]
-        [AllowAnonymous]
-        public async Task<ActionResult> RecruiterRegistration([FromBody] RecruiterRegistrationCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
         /// Agent and Player update info -  semi verified registration
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -132,9 +102,7 @@ namespace Innovision.Core.API.Controllers
 
 
         /// <summary>
-        /// 
         /// Update user proof info
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -147,9 +115,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Update user personal details
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -162,9 +128,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Update user personal details
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -177,9 +141,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Update user Address Info
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -192,9 +154,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Add/Update user account setting
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -207,9 +167,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Update user profile image
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -222,25 +180,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
-        /// Add new master agent
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("masteragent")]
-        [AllowAnonymous]
-        public async Task<ActionResult> Post([FromBody] CreateMasterAgentCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
         /// Add new operator
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -253,9 +193,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         ///  Get list of operators by company ID
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -268,39 +206,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
-        ///  Get list of Master Agents
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("masteragents/search")]
-        public async Task<IActionResult> Post([FromBody] GetMasterAgentsQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
-        ///  Get list of Agents
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("agents/search")]
-        public async Task<IActionResult> Post([FromBody] GetAgentsQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
         ///  Get list of players
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -313,9 +219,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         ///  Get all operators
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -327,37 +231,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
-        ///  Get all Master Agents
-        /// 
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("masteragents")]
-        public async Task<IActionResult> GetAllMasterAgents(CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(new GetMasterAgentsQuery());
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
-        ///  Get all Agents
-        /// 
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("agents")]
-        public async Task<IActionResult> GetAllAgents(CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(new GetAgentsQuery());
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
         ///  Get all players
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -369,9 +243,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// List of users for Approval=
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -383,9 +255,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// List of users for Approval to all branches
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -397,9 +267,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Approve user
-        /// 
         /// </summary>
         /// <param name="approvedUserCommand"></param>
         /// <param name="cancellationToken"></param>
@@ -412,9 +280,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Decline user
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -427,9 +293,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Create system user
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -442,9 +306,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Create multiple users
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -457,9 +319,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Create system user
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -471,9 +331,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get user information by AccountInfoId
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -485,9 +343,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get user information by AccountInfoId
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -518,9 +374,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get list of users filtered by company, branch and role.
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -533,9 +387,7 @@ namespace Innovision.Core.API.Controllers
 
 
         /// <summary>
-        /// 
         /// Get pageinated list of users filtered by company, branch and role.
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -547,9 +399,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get list of users for loading
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -561,9 +411,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get list of users for loading
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -576,9 +424,7 @@ namespace Innovision.Core.API.Controllers
 
 
         /// <summary>
-        /// 
         /// Get list of users by role
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -590,9 +436,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get paginate verified users
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -604,23 +448,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get list of downline agents
-        /// 
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("downline/agents")]
-        public async Task<ActionResult> GetDownlineAgentsQuery([FromBody] GetDownlineAgentsQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
-        /// Get list of downline agents
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -632,9 +460,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get downline counts
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -646,9 +472,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get all users for verification
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -660,9 +484,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Approve user verification
-        /// 
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
@@ -674,9 +496,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Decline user verification
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -689,9 +509,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Request user verification
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -704,9 +522,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// List all verified users
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -719,9 +535,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// List all semi-verified users
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -734,9 +548,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Export all semi-verified users
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -749,9 +561,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// List all fully-verified users
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -764,9 +574,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Export all fully-verified users
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -779,9 +587,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// List all verified users
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -794,9 +600,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Update user statuses
-        /// 
         /// </summary>
         /// <param name="command"></param>
         /// <param name="cancellationToken"></param>
@@ -809,24 +613,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
-        /// Get list of Agents and Master agents by branch id
-        /// 
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("agents/list")]
-        public async Task<ActionResult> GetListOfAgentsByBranchId([FromQuery] GetAgentsByBranchIdQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
         /// Get upline recruiter
-        /// 
         /// </summary>
         /// <param name="query"></param>
         /// <param name="cancellationToken"></param>
@@ -839,9 +626,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get Users for Notifincation
-        /// 
         /// </summary>
         /// <param name="query"></param>
         /// <param name="cancellationToken"></param>
@@ -854,24 +639,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
-        /// Get company GFM
-        /// 
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("company/gfm")]
-        public async Task<ActionResult> GetCompanyGFM([FromQuery] GetCompanyGFMQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
         /// Get company Main Operator
-        /// 
         /// </summary>
         /// <param name="query"></param>
         /// <param name="cancellationToken"></param>
@@ -884,9 +652,7 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Get downline users
-        /// 
         /// </summary>
         /// <param name="query"></param>
         /// <param name="cancellationToken"></param>
@@ -899,30 +665,13 @@ namespace Innovision.Core.API.Controllers
         }
 
         /// <summary>
-        /// 
         /// Update downline user
-        /// 
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPatch("update/downline")]
         public async Task<ActionResult> GetDownlineUsers(UpdateUserDownlineCommand request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// 
-        /// Get Default Agent by company
-        /// 
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("default/agent")]
-        public async Task<ActionResult> GetDefaultAgent([FromQuery] GetDefaultAgentQuery request, CancellationToken cancellationToken)
         {
             var result = await Mediator.Send(request, cancellationToken);
             return (result.Success) ? Ok(result) : BadRequest(result);

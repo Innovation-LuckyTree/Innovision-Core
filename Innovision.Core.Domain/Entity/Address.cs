@@ -2,8 +2,9 @@
 
 namespace Innovision.Core.Domain.Entity;
 
-public class Address :AuditableEntity
+public class Address : AuditableEntity
 {
+    public long AddressId { get; set; }
     public string? Region { get; set; }
     public string? Province { get; set; }
     public string? Municipality { get; set; }
@@ -19,4 +20,8 @@ public class Address :AuditableEntity
     public string? PermanentMunicipality { get; set; }
     public string? PermanentBarangay { get; set; }
     public string? PermanentStreetOrPurok { get; set; }
+
+    public virtual ICollection<Account> PermanentAccountAddresses { get; set; }
+    public virtual ICollection<Account> PresentAccountAddresses { get; set; }
+    public virtual ICollection<Branch> Branches { get; set; }
 }

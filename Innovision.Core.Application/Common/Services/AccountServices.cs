@@ -22,16 +22,22 @@ public class AccountServices : IAccountServices
             MobileNumber = details.ContactNumber,
             MartialStatus = details.MartialStatus,
             BirthDate = details.BirthDate,
-            Region = details.Region,
-            Province = details.Province,
-            Municipality = details.Municipality,
-            Barangay = details.Barangay,
-            StreetOrPurok = details.StreetOrPurok,
-            PermanentRegion = details.Region,
-            PermanentProvince = details.Province,
-            PermanentMunicipality = details.Municipality,
-            PermanentBarangay = details.Barangay,
-            PermanentStreetOrPurok = details.StreetOrPurok,
+            PresentAddress = new Address
+            {
+                Region = details.Region,
+                Province = details.Province,
+                Municipality = details.Municipality,
+                Barangay = details.Barangay,
+                StreetOrPurok = details.StreetOrPurok
+            },
+            PermanentAddress = new Address
+            {
+                Region = details.Region,
+                Province = details.Province,
+                Municipality = details.Municipality,
+                Barangay = details.Barangay,
+                StreetOrPurok = details.StreetOrPurok
+            },
             UserTypeId = Domain.Enums.UserTypes.Operator,
             CreatedBy = string.IsNullOrEmpty(_currentUserService.UserId) ? "System" : _currentUserService.UserId,
             ModifiedBy = string.IsNullOrEmpty(_currentUserService.UserId) ? "System" : _currentUserService.UserId,
