@@ -17,6 +17,9 @@ public class CoreDbContext : DbContext, ICoreDbContext
     public DbSet<Branch> Branches { get; set; }
     public DbSet<UserType> UserTypes { get; set; }
     public DbSet<Game> Games { get; set; }
+    public DbSet<GameCategory> GameCategory { get; set; }
+    public DbSet<GameProvider> GameProvider { get; set; }
+    public DbSet<GameStatus> GameStatus { get; set; }
     public DbSet<GameDrawType> GameDrawTypes { get; set; }
     public DbSet<GameType> GameTypes { get; set; }
     public DbSet<Order> Orders { get; set; }
