@@ -2,7 +2,7 @@ using Innovision.Core.Application.Common;
 using Innovision.Core.Application.Common.Interfaces;
 using MediatR;
 
-namespace HappyPlay.Upload.Application.Requests.Uploads.Queries;
+namespace Innovision.Upload.Application.Requests.Uploads.Queries;
 
 public class GetImageQueryHandler(IFileService fileService) : IRequestHandler<GetImageQuery, ApiResponse<string>>
 {

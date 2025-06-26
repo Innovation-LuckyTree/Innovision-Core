@@ -19,7 +19,7 @@ public class JackpotWinnerDto : IMapFrom<JackpotWinner>
     public string GameTypeName { get; set; }
     public int GameId { get; set; }
     public string DrawResult { get; set; }
-    public long OrderItemId { get; set; }
+    public long BetTransactionId { get; set; }
     public long GameScheduleId { get; set; }
     public  DateTimeOffset DrawDate { get; set; }
     public TimeSpan DrawTime { get; set; }
@@ -62,7 +62,7 @@ public class JackpotWinnerDto : IMapFrom<JackpotWinner>
             .ForMember(t => t.GameTypeName, f => f.MapFrom(src => src.GameTypeName))
             .ForMember(t => t.GameId, f => f.MapFrom(src => src.GameId))
             .ForMember(t => t.DrawResult, f => f.MapFrom(src => src.DrawResult))
-            .ForMember(t => t.OrderItemId, f => f.MapFrom(src => src.OrderItemId))
+            .ForMember(t => t.BetTransactionId, f => f.MapFrom(src => src.BetTransactionId))
             .ForMember(t => t.GameScheduleId, f => f.MapFrom(src => src.GameScheduleId))
             .ForMember(t => t.DrawDate, f => f.MapFrom(src => src.DrawDate))
             .ForMember(t => t.DrawTime, f => f.MapFrom(src => src.DrawTime))

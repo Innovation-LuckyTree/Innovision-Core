@@ -14,7 +14,7 @@ public class GetLatestLiveStreamQueryHandler(ICoreDbContext coreDbContext, IMapp
     public async Task<LiveStreamDto> Handle(GetLatestLiveStreamQuery request, CancellationToken cancellationToken)
     {
         var result = await _coreDbContext.LiveStreams
-            .Where(m => m.BranchId == request.branchId)
+            .Where(m => m.GameId == request.GameId)
             .OrderByDescending(o => o.LiveStreamId)
             .ProjectTo<LiveStreamDto>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);

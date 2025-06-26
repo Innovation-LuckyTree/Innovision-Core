@@ -15,9 +15,10 @@ public class GetGamesByGameProviderAndCategoryQueryHandler(ICoreDbContext dbCont
 
     public async Task<GameVm> Handle(GetGamesByGameProviderAndCategoryQuery request, CancellationToken cancellationToken)
     {
-        var games = await _dbContext.Games
-            .Where(x => x.GameProviderId == request.GameProviderId
+        var games = await _dbContext.GameCatalogs
+            .Where(x => x.Game.GameProviderId == request.GameProviderId
                 && x.GameCategoryId == request.GameCategoryId)
+            .Select(g => g.Game)
             .ProjectTo<GameDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 

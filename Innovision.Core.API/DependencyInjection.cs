@@ -65,8 +65,8 @@ public static class DependencyInjection
 
         builder.Services.AddSwaggerGen(opts =>
         {
-            opts.SwaggerDoc("v1", new OpenApiInfo { Title = "HappyPlay.Core API", Version = "version 1.0" });
-            //opts.SwaggerDoc("v2", new OpenApiInfo { Title = "HappyPlay.Core API", Version = "version 2.0" });
+            opts.SwaggerDoc("v1", new OpenApiInfo { Title = "Innovision.Core API", Version = "version 1.0" });
+            //opts.SwaggerDoc("v2", new OpenApiInfo { Title = "Innovision.Core API", Version = "version 2.0" });
 
             opts.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
@@ -75,7 +75,7 @@ public static class DependencyInjection
                        {
                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "oauth2" }
                        },
-                       new[] { "HappyPlay.Core", "HappyPlay.Core" }
+                       new[] { "Innovision.Core", "Innovision.Core" }
                    }
             });
 

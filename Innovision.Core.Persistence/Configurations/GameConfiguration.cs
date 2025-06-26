@@ -25,14 +25,10 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
         builder.Property(e => e.ExternalGameId)
             .IsRequired(false);
 
-        builder.HasOne(e => e.GameCategory)
-            .WithMany(f => f.Games)
-            .HasForeignKey(e => e.GameCategoryId);
-            
         builder.HasOne(e => e.GameProvider)
             .WithMany(f => f.Games)
             .HasForeignKey(e => e.GameProviderId);
-            
+
         builder.HasOne(e => e.GameStatus)
             .WithMany(f => f.Games)
             .HasForeignKey(e => e.GameStatusId);

@@ -3,7 +3,7 @@ using System.Text;
 using Innovision.Core.Application.Common.Interfaces;
 using Innovision.Core.Application.Common.Models;
 using Innovision.Core.Application.Exceptions;
-using HappyPlay.Upload.Application.Common;
+using Innovision.Upload.Application.Common;
 using Renci.SshNet;
 using Renci.SshNet.Common;
 

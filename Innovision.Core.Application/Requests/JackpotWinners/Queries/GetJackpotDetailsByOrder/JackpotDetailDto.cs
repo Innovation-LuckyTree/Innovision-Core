@@ -7,7 +7,7 @@ namespace Innovision.Core.Application.Requests.JackpotWinners.Queries.GetJackpot
 public class JackpotDetailDto : IMapFrom<JackpotWinner>
 {
     public long JackpotWinnerId { get; set; }
-    public long OrderItemId { get; set; }
+    public long BetTransactionId { get; set; }
     public long DrawResultId { get; set; }
     public long AccountInfoId { get; set; }
     public int StatusId { get; set; }
@@ -18,7 +18,7 @@ public class JackpotDetailDto : IMapFrom<JackpotWinner>
     {
         profile.CreateMap<JackpotWinner, JackpotDetailDto>()
             .ForMember(t => t.JackpotWinnerId, f => f.MapFrom(src => src.JackpotWinnerId))
-            .ForMember(t => t.OrderItemId, f => f.MapFrom(src => src.OrderItemId))
+            .ForMember(t => t.BetTransactionId, f => f.MapFrom(src => src.BetTransactionId))
             .ForMember(t => t.DrawResultId, f => f.MapFrom(src => src.DrawResultId))
             .ForMember(t => t.AccountInfoId, f => f.MapFrom(src => src.AccountInfoId))
             .ForMember(t => t.StatusId, f => f.MapFrom(src => src.JackpotWinnerStatusId))

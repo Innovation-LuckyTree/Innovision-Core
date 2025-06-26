@@ -32,7 +32,7 @@ namespace Innovision.Core.Application.Requests.Players.Queries.GetInActivePlayer
               .ForMember(t => t.CreatedOn, f => f.MapFrom(src => src.CreatedOn))
               .ForMember(t => t.LastModified, f => f.MapFrom(src => src.LastModified))
               .ForMember(t => t.RoleName, f => f.MapFrom(src => src.UserType.UserTypeName))
-              .ForMember(t => t.InActivityDate, f => f.MapFrom(src => src.Orders.OrderByDescending(m=>m.CreatedOn).FirstOrDefault().CreatedOn))
+              .ForMember(t => t.InActivityDate, f => f.MapFrom(src => src.BetTransactions.OrderByDescending(m=>m.CreatedOn).FirstOrDefault().CreatedOn))
               ;
         }
     }

@@ -2,7 +2,7 @@
 using Innovision.Core.Application.Common.Constants;
 using Innovision.Core.Application.Common.Interfaces;
 using Innovision.Core.Domain.Entity;
-using HappyPlay.Upload.Application.Common;
+using Innovision.Upload.Application.Common;
 
 namespace Innovision.Core.Application.Requests.Withdrawals;
 

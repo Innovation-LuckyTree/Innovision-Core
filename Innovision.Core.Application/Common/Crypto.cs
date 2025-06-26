@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace HappyPlay.Upload.Application.Common;
+namespace Innovision.Upload.Application.Common;
 
 public class Crypto
 {

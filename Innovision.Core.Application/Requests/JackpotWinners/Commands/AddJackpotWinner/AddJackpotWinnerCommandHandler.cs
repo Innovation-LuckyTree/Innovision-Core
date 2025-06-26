@@ -22,7 +22,7 @@ public class AddJackpotWinnerCommandHandler : IRequestHandler<AddJackpotWinnerCo
     public async Task<JackpotWinnerDto> Handle(AddJackpotWinnerCommand request, CancellationToken cancellationToken)
     {
         var existingJackpotWinner = await _coreDbContext.JackpotWinners
-            .Where(o => o.GameScheduleId == request.GameScheduleId && o.OrderItemId == request.OrderItemId)
+            .Where(o => o.GameScheduleId == request.GameScheduleId && o.BetTransactionId == request.BetTransactionId)
             .ProjectTo<JackpotWinnerDto>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -39,7 +39,7 @@ public class AddJackpotWinnerCommandHandler : IRequestHandler<AddJackpotWinnerCo
             GameTypeName = request.GameTypeName,
             GameId = request.GameId,
             DrawResult = request.DrawResult,
-            OrderItemId = request.OrderItemId,
+            BetTransactionId = request.BetTransactionId,
             GameScheduleId = request.GameScheduleId,
             DrawDate = request.DrawDate,
             DrawTime = request.DrawTime,

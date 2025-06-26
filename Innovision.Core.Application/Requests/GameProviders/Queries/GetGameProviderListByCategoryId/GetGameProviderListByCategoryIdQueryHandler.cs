@@ -14,9 +14,9 @@ public class GetGameProviderListByCategoryIdQueryHandler(ICoreDbContext dbContex
 
     public async Task<GameProviderVm> Handle(GetGameProviderListByCategoryIdQuery request, CancellationToken cancellationToken)
     {
-        var gameProviders = await _dbContext.Games
-            .Where(x => x.GameCategoryId == request.GameCategoryId)
-            .Select(g => g.GameProvider)
+        var gameProviders = await _dbContext.GameCatalogs
+            .Where(x => x.GameCatalogId == request.GameCategoryId)
+            .Select(g => g.Game.GameProvider)
             .ProjectTo<GameProvidersDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 

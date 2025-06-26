@@ -13,7 +13,7 @@ public class AddJackpotWinnerCommand : IRequest<JackpotWinnerDto>
     public string GameTypeName { get; set; }
     public int GameId { get; set; }
     public string DrawResult { get; set; }
-    public long OrderItemId { get; set; }
+    public long BetTransactionId { get; set; }
     public long GameScheduleId { get; set; }
     public  DateTimeOffset DrawDate { get; set; }
     public TimeSpan DrawTime { get; set; }

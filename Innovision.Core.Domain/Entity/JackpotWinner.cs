@@ -13,7 +13,7 @@ public partial class JackpotWinner : AuditableEntity
     public string GameTypeName { get; set; }
     public int GameId { get; set; }
     public string DrawResult { get; set; }
-    public long OrderItemId { get; set; }
+    public long BetTransactionId { get; set; }
     public long GameScheduleId { get; set; }
     public  DateTimeOffset DrawDate { get; set; }
     public TimeSpan DrawTime { get; set; }
@@ -33,7 +33,7 @@ public partial class JackpotWinner : AuditableEntity
     public virtual Account ApproverAccount { get; set; }
     public virtual Account ReleaserAccount { get; set; }
     public virtual Game Game { get; set; }
-    public virtual OrderItem OrderItem { get; set; }
+    public virtual BetTransaction BetTransaction { get; set; }
     public virtual JackpotWinnerStatus JackpotWinnerStatus { get; set; }
     public virtual IEnumerable<JackpotWinnerAttachment> JackpotWinnerAttachments { get; set; }
 }
