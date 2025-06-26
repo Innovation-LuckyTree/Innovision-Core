@@ -20,9 +20,11 @@ namespace Innovision.Core.Application.Requests.Users.Queries
         public int FmTypeId { get; set; }
         public string FMTypeName { get; set; }
 
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
+        public string Suffix { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
@@ -84,6 +86,8 @@ namespace Innovision.Core.Application.Requests.Users.Queries
               .ForMember(t => t.FirstName, f => f.MapFrom(src => src.FirstName))
               .ForMember(t => t.LastName, f => f.MapFrom(src => src.LastName))
               .ForMember(t => t.MiddleName, f => f.MapFrom(src => src.MiddleName))
+              .ForMember(t => t.UserName, f => f.MapFrom(src => src.UserName))
+              .ForMember(t => t.Suffix, f => f.MapFrom(src => src.Suffix))
               .ForMember(t => t.Email, f => f.MapFrom(src => src.Email))
               .ForMember(t => t.Age, f => f.MapFrom(src => src.Age))
               .ForMember(t => t.Gender, f => f.MapFrom(src => src.Gender))
