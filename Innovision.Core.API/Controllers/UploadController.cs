@@ -1,11 +1,11 @@
 ﻿using Innovision.Core.API.Controllers;
 using Innovision.Core.Application.Requests.Uploads.Commands;
-using HappyPlay.Upload.Application.Requests.Uploads.Commands;
-using HappyPlay.Upload.Application.Requests.Uploads.Queries;
+using Innovision.Upload.Application.Requests.Uploads.Commands;
+using Innovision.Upload.Application.Requests.Uploads.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HappyPlay.Upload.API.Controllers
+namespace Innovision.Upload.API.Controllers
 {
     public class UploadController : ApiBaseController
     {

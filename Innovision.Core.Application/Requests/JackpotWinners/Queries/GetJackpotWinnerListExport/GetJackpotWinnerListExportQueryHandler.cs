@@ -1,3 +1,4 @@
+using Innovision.Core.Application.Common.Models;
 using Innovision.Core.Application.Requests.JackpotWinners.Queries.GetJackpotWinnerList;
 using MediatR;
 using ReportServices.Infrastructure.Helpers;
@@ -30,7 +31,7 @@ public class GetJackpotWinnerListExportQueryHandler(IMediator mediator) : IReque
     var exportData = vm.Data.ListData.Select(account => new
     {
       DisplayName = account.DisplayName,
-      OrderItemId = account.OrderItemId,
+      BetTransactionId = account.BetTransactionId,
       ReferenceId = account.TransactionNumber,
       ClaimablePayout = account.WinAmount,
       Date = account.DrawDateDisplay,

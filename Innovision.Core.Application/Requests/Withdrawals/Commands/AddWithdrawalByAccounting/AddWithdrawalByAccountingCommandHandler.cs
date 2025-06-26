@@ -8,7 +8,7 @@ using Innovision.Core.Application.Requests.Notifications.Queries.GetCredtiNotifc
 using Innovision.Core.Domain.Entity;
 using Innovision.Core.Infrastructure.AccountServices.Models.Requests;
 using Innovision.Core.Infrastructure.Interfaces;
-using HappyPlay.Upload.Application.Common;
+using Innovision.Upload.Application.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

@@ -3,7 +3,7 @@ using Innovision.Core.Application.Common.Extensions;
 using Innovision.Core.Application.Common.Interfaces;
 using MediatR;
 
-namespace HappyPlay.Upload.Application.Requests.Uploads.Commands;
+namespace Innovision.Upload.Application.Requests.Uploads.Commands;
 
 public class UploadImageCommandHandler(IFileService fileService) : IRequestHandler<UploadImageCommand, ApiResponse<string>>
 {

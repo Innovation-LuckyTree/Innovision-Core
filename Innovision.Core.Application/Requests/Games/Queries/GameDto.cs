@@ -11,7 +11,12 @@ public class GameDto : IMapFrom<Game>
     public string Name { get; set; }
     public string Description { get; set; }
     public bool Active { get; set; }
-    public IEnumerable<GameTypesDto> GameTypes { get; set; }
+
+    public string ExternalGameId { get; set; }
+    public int GameProviderId { get; set; }////
+    public int GameStatusId { get; set; }////
+    public bool IsInternal { get; set; }
+    public string CoverImage { get; set; }
 
     public void Mapping(Profile profile)
     {
@@ -21,6 +26,10 @@ public class GameDto : IMapFrom<Game>
             .ForMember(t => t.Name, f => f.MapFrom(src => src.Name))
             .ForMember(t => t.Description, f => f.MapFrom(src => src.Description))
             .ForMember(t => t.Active, f => f.MapFrom(src => src.Active))
-            .ForMember(t => t.GameTypes, f => f.MapFrom(src => src.GameTypes));
+            .ForMember(t => t.ExternalGameId, f => f.MapFrom(src => src.ExternalGameId))
+            .ForMember(t => t.GameProviderId, f => f.MapFrom(src => src.GameProviderId))
+            .ForMember(t => t.GameStatusId, f => f.MapFrom(src => src.GameStatusId))
+            .ForMember(t => t.IsInternal, f => f.MapFrom(src => src.IsInternal))
+            .ForMember(t => t.CoverImage, f => f.MapFrom(src => src.CoverImage));
     }
 }

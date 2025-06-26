@@ -6,8 +6,19 @@ public class Account : AuditableEntity
 {
     public Account()
     {
-        Orders = [];
-        OrderItems = [];
+        AccountHistories = new HashSet<AccountHistory>();
+        BetTransactions = new HashSet<BetTransaction>();
+        Withdrawals = new HashSet<Withdrawal>();
+        Deposits = new HashSet<Deposit>();
+        JackpotWinners = new HashSet<JackpotWinner>();
+        ApprovedJackpotWinners = new HashSet<JackpotWinner>();
+        ReleasedJackpotWinners = new HashSet<JackpotWinner>();
+        Notifications = new HashSet<Notification>();
+        SelfLimits = new HashSet<SelfLimit>();
+        SelfExclusions = new HashSet<SelfExclusion>();
+        AdministrativeExclusions = new HashSet<AdministrativeExclusion>();
+        PlayerActivities = new HashSet<PlayerActivity>();
+        BlockedUserHistories = new HashSet<BlockedUserHistory>();
     }
 
     public long AccountInfoId { get; set; }
@@ -69,8 +80,7 @@ public class Account : AuditableEntity
     public virtual IEnumerable<UserStatus> UserStatuses { get; set; }
     public virtual IEnumerable<AccountHistory> AccountHistories { get; set; }
 
-    public virtual IEnumerable<Order> Orders { get; set; }
-    public virtual IEnumerable<OrderItem> OrderItems { get; set; }
+    public virtual IEnumerable<BetTransaction> BetTransactions { get; set; }
     public virtual IEnumerable<Withdrawal> Withdrawals { get; set; }
     public virtual IEnumerable<Deposit> Deposits { get; set; }
     public virtual ICollection<JackpotWinner> JackpotWinners { get; set; }

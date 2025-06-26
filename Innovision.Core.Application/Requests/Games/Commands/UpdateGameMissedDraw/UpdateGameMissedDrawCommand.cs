@@ -18,8 +18,6 @@ namespace Innovision.Core.Application.Requests.Games.Commands.UpdateGameMissedDr
 
             _ = game ?? throw new EntityNotFoundException(typeof(Game).Name, request.GameId);
 
-            game.StandardMissedDraws = request.StandardMissedDraws;
-
             _dbContext.Games.Update(game);
             await _dbContext.SaveChangesAsync(cancellationToken);
 

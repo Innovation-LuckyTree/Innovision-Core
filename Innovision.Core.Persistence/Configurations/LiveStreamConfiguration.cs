@@ -23,8 +23,8 @@ public class LiveStreamConfiguration : IEntityTypeConfiguration<LiveStream>
         builder.Property(e => e.Description)
             .IsRequired(false);
 
-        builder.HasOne(e => e.Branch)
+        builder.HasOne(e => e.Game)
             .WithMany(f => f.LiveStreams)
-            .HasForeignKey(e => e.BranchId);
+            .HasForeignKey(e => e.GameId);
     }
 }

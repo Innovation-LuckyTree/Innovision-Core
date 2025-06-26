@@ -15,7 +15,7 @@ public class GetJackpotDetailsByOrderQueryHandler(ICoreDbContext coreDbContext, 
     {
         var jackpotDetails = await _coreDbContext.JackpotWinners
             .Include(o => o.JackpotWinnerStatus)
-            .Where(o => request.OrderItemIds.Contains(o.OrderItemId))
+            .Where(o => request.BetTransactionIds.Contains(o.BetTransactionId))
             .ProjectTo<JackpotDetailDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 

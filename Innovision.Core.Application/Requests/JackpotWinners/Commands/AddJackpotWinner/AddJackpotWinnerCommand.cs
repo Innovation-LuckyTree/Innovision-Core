@@ -10,11 +10,10 @@ public class AddJackpotWinnerCommand : IRequest<JackpotWinnerDto>
     public int CompanyGameId { get; set; }
     public string TransactionNo { get; set; }
     public long DrawResultId { get; set; }
-    public int GameTypeId { get; set; }
     public string GameTypeName { get; set; }
     public int GameId { get; set; }
     public string DrawResult { get; set; }
-    public long OrderItemId { get; set; }
+    public long BetTransactionId { get; set; }
     public long GameScheduleId { get; set; }
     public  DateTimeOffset DrawDate { get; set; }
     public TimeSpan DrawTime { get; set; }

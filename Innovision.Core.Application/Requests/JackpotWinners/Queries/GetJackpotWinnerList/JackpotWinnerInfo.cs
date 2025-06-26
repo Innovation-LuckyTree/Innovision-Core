@@ -8,7 +8,7 @@ public class JackpotWinnerInfo : IMapFrom<JackpotWinner>
 {
     public string TransactionNumber { get; set; }
     public long TransactionId { get; set; }
-    public string OrderItemId { get; set; }
+    public string BetTransactionId { get; set; }
     public long JackpotWinnerId { get; set; }
     public long AccountInfoId { get; set; }
     public decimal WinAmount { get; set; }
@@ -32,7 +32,7 @@ public class JackpotWinnerInfo : IMapFrom<JackpotWinner>
     {
         profile.CreateMap<JackpotWinner, JackpotWinnerInfo>()
             .ForMember(t => t.TransactionNumber, f => f.MapFrom(src => src.TransactionNo))
-            .ForMember(t => t.OrderItemId, f => f.MapFrom(src => src.OrderItemId))
+            .ForMember(t => t.BetTransactionId, f => f.MapFrom(src => src.BetTransactionId))
             .ForMember(t => t.JackpotWinnerId, f => f.MapFrom(src => src.JackpotWinnerId))
             .ForMember(t => t.AccountInfoId, f => f.MapFrom(src => src.AccountInfoId))
             .ForMember(t => t.WinAmount, f => f.MapFrom(src => src.GrossWinAmount))

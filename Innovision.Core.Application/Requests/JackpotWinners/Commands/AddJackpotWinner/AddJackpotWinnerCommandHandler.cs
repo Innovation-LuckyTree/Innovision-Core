@@ -21,17 +21,13 @@ public class AddJackpotWinnerCommandHandler : IRequestHandler<AddJackpotWinnerCo
 
     public async Task<JackpotWinnerDto> Handle(AddJackpotWinnerCommand request, CancellationToken cancellationToken)
     {
-        var gameTypes = await _coreDbContext.GameTypes.ToListAsync(cancellationToken);
-
         var existingJackpotWinner = await _coreDbContext.JackpotWinners
-            .Where(o => o.GameScheduleId == request.GameScheduleId && o.OrderItemId == request.OrderItemId)
+            .Where(o => o.GameScheduleId == request.GameScheduleId && o.BetTransactionId == request.BetTransactionId)
             .ProjectTo<JackpotWinnerDto>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
 
         if (existingJackpotWinner != null)
             return existingJackpotWinner;
-
-        var gameTypeId = gameTypes.Where(e => e.GameReferenceId == request.GameTypeId).FirstOrDefault();
 
         JackpotWinner jackpotWinner = new()
         {
@@ -40,11 +36,10 @@ public class AddJackpotWinnerCommandHandler : IRequestHandler<AddJackpotWinnerCo
             TransactionNo = request.TransactionNo,
             BetValue = request.BetValue,
             DrawResultId = request.DrawResultId,
-            GameTypeId = gameTypeId?.GameTypeId ?? request.GameTypeId,
             GameTypeName = request.GameTypeName,
             GameId = request.GameId,
             DrawResult = request.DrawResult,
-            OrderItemId = request.OrderItemId,
+            BetTransactionId = request.BetTransactionId,
             GameScheduleId = request.GameScheduleId,
             DrawDate = request.DrawDate,
             DrawTime = request.DrawTime,

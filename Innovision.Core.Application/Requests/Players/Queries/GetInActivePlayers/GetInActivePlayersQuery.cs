@@ -52,7 +52,7 @@ namespace Innovision.Core.Application.Requests.Players.Queries.GetInActivePlayer
                 var query = _dbContext.Accounts
                     .Include(m => m.UserType)
                     .Include(m => m.Branch)
-                    .Include(m => m.Orders)
+                    .Include(m => m.BetTransactions)
                     .Where(m => !guids.Contains(m.AccountInfoId) && m.UserTypeId == UserTypes.Player)
                     .OrderBy(x => x.AccountInfoId)
                     .AsQueryable();

@@ -12,13 +12,10 @@ public class AddJackpotWinnerCommandValidator : AbstractValidator<AddJackpotWinn
         RuleFor(o => o.DrawResultId)
             .GreaterThan(0);
 
-        RuleFor(o => o.GameTypeId)
-            .GreaterThan(0);
-
         RuleFor(o => o.GameId)
             .GreaterThan(0);
 
-        RuleFor(o => o.OrderItemId)
+        RuleFor(o => o.BetTransactionId)
             .GreaterThan(0);
 
         RuleFor(o => o.GameScheduleId)
