@@ -21,5 +21,23 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
 
         builder.Property(e => e.Description)
             .IsRequired(false);
+
+        builder.Property(e => e.ExternalGameId)
+            .IsRequired(false);
+
+        builder.HasOne(e => e.GameCategory)
+            .WithMany(f => f.Game)
+            .HasForeignKey(e => e.GameCategoryId);
+            
+        builder.HasOne(e => e.GameProvider)
+            .WithMany(f => f.Game)
+            .HasForeignKey(e => e.GameProviderId);
+            
+        builder.HasOne(e => e.GameStatus)
+            .WithMany(f => f.Game)
+            .HasForeignKey(e => e.GameStatusId);
+
+        builder.Property(e => e.CoverImage)
+            .IsRequired(false);
     }
 }

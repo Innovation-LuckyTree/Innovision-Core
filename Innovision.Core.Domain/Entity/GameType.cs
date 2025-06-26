@@ -2,16 +2,13 @@
 
 namespace Innovision.Core.Domain.Entity;
 
-public partial class GameType : AuditableEntity
+public class GameType
 {
     public int GameTypeId { get; set; }
-    public int GameId { get; set; }
-    public int GameReferenceId { get; set; } // from game api
     public string GameTypeName { get; set; }
-    public string GameTypeDesciption { get; set; }
-    public decimal CardPrice { get; set; }
-
-    public virtual Game Game { get; set; }
+    public string GameTypeDescription { get; set; }
+    public string CoverImage { get; set; }
+    public virtual ICollection<Game> Game { get; set; }
     public virtual ICollection<OrderItem> OrderItems { get; set; }
     public virtual ICollection<JackpotWinner> JackpotWinners { get; set; }
 }

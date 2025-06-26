@@ -1,3 +1,5 @@
+using Innovision.Core.Application.Requests.GameCategories.Queries;
+using Innovision.Core.Application.Requests.GameProviders.Queries;
 using Innovision.Core.Application.Requests.Games.Commands.AddGameType;
 using Innovision.Core.Application.Requests.Games.Commands.CreateGame;
 using Innovision.Core.Application.Requests.Games.Commands.UpdateGame;
@@ -36,7 +38,7 @@ public class GameController : ApiBaseController
     }
 
     [HttpGet("gametype/list")]
-    public async Task<ActionResult> GetGameTypeById([FromQuery]IEnumerable<int> ids, CancellationToken cancellationToken)
+    public async Task<ActionResult> GetGameTypeById([FromQuery] IEnumerable<int> ids, CancellationToken cancellationToken)
     {
         var gameType = await _memoryCache.GetOrCreateAsync(new { Controller = nameof(GameController), Type = "gameTypeList", Ids = ids }, async entry =>
         {
@@ -90,5 +92,32 @@ public class GameController : ApiBaseController
         var result = await Mediator.Send(command, cancellationToken);
         return Ok(result);
     }
+
+    ////New Version
+    /// 
+    [HttpGet("GameCategory")]
+    public async Task<IActionResult> GetGameCategories(CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetGameCategoriesQuery(), cancellationToken);
+
+        return Ok(result);
+    }
+    
+    [HttpGet("GameProvider")]
+    public async Task<IActionResult> GetGameProviders(CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetGameProviderListQuery(), cancellationToken);
+
+        return Ok(result);
+    }
+    
+    [HttpGet("GameCategory/GameProvider/{GameCategoryid}")]
+    public async Task<IActionResult> GetGameProviderByCategoryId(int GameCategoryid, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetGameProviderListByCategoryIdQuery(GameCategoryid), cancellationToken);
+
+        return Ok(result);
+    }
+    
 }
 

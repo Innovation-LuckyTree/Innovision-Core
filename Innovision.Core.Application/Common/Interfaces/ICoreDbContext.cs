@@ -11,6 +11,9 @@ public interface ICoreDbContext
     DbSet<Branch> Branches { get; set; }
     DbSet<UserType> UserTypes { get; set; }
     DbSet<Game> Games { get; set; }
+    DbSet<GameCategory> GameCategory { get; set; }
+    DbSet<GameProvider> GameProvider { get; set; }
+    DbSet<GameStatus> GameStatus { get; set; }
     DbSet<GameDrawType> GameDrawTypes { get; set; }
     DbSet<GameType> GameTypes { get; set; }
     DbSet<Order> Orders { get; set; }
