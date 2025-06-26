@@ -46,635 +46,634 @@ using Innovision.Core.Application.Requests.Users.Queries.ValidateMobileNumber;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Innovision.Core.API.Controllers
+namespace Innovision.Core.API.Controllers;
+
+public class UserController : ApiBaseController
 {
-    public class UserController : ApiBaseController
+
+    private readonly ILogger<UserController> _logger;
+
+    public UserController(ILogger<UserController> logger)
     {
+        _logger = logger;
+    }
 
-        private readonly ILogger<UserController> _logger;
+    /// <summary>
+    /// Player basic registration
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("basic/registration")]
+    [AllowAnonymous]
+    public async Task<ActionResult> Post([FromBody] BasicRegistrationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        public UserController(ILogger<UserController> logger)
-        {
-            _logger = logger;
-        }
+    /// <summary>
+    /// Agent and Player registration
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("registration")]
+    [AllowAnonymous]
+    public async Task<ActionResult> Post([FromBody] UserRegistrationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Player basic registration
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("basic/registration")]
-        [AllowAnonymous]
-        public async Task<ActionResult> Post([FromBody] BasicRegistrationCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// Agent and Player registration
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("registration")]
-        [AllowAnonymous]
-        public async Task<ActionResult> Post([FromBody] UserRegistrationCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// Agent and Player update info -  semi verified registration
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("update/getverified")]
-        [AllowAnonymous]
-        public async Task<ActionResult> UpdateUserByAccountObjectId([FromBody] UpdateUserByAccountObjectIdCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Agent and Player update info -  semi verified registration
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("update/getverified")]
+    [AllowAnonymous]
+    public async Task<ActionResult> UpdateUserByAccountObjectId([FromBody] UpdateUserByAccountObjectIdCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
 
-        /// <summary>
-        /// Update user proof info
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("proof/info")]
-        public async Task<ActionResult> UpdateProofInfo(UpdateProofInfoCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Update user proof info
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("proof/info")]
+    public async Task<ActionResult> UpdateProofInfo(UpdateProofInfoCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Update user personal details
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("personal/details")]
-        public async Task<ActionResult> UpdatePersonalDetails(UpdatePersonalDetailsCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Update user personal details
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("personal/details")]
+    public async Task<ActionResult> UpdatePersonalDetails(UpdatePersonalDetailsCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Update user personal details
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("profession")]
-        public async Task<ActionResult> UpdateProfession(UpdateProfessionCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Update user personal details
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("profession")]
+    public async Task<ActionResult> UpdateProfession(UpdateProfessionCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Update user Address Info
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("address")]
-        public async Task<ActionResult> UpdateUserAddress(UpdateAddressCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Update user Address Info
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("address")]
+    public async Task<ActionResult> UpdateUserAddress(UpdateAddressCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Add/Update user account setting
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("account/setting")]
-        public async Task<ActionResult> UpdateAccountSetting(UpdateNotificationSettingCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Add/Update user account setting
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("account/setting")]
+    public async Task<ActionResult> UpdateAccountSetting(UpdateNotificationSettingCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Update user profile image
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("profile/image")]
-        public async Task<ActionResult> UpdateProfileImage(UpdateProfileImageCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Update user profile image
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("profile/image")]
+    public async Task<ActionResult> UpdateProfileImage(UpdateProfileImageCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Add new operator
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("operator")]
-        public async Task<ActionResult> Post([FromBody] CreateOperatorCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Add new operator
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("operator")]
+    public async Task<ActionResult> Post([FromBody] CreateOperatorCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        ///  Get list of operators by company ID
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("operators/search")]
-        public async Task<IActionResult> Post([FromBody] GetOperatorQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    ///  Get list of operators by company ID
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("operators/search")]
+    public async Task<IActionResult> Post([FromBody] GetOperatorQuery command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        ///  Get list of players
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("players/search")]
-        public async Task<IActionResult> Post([FromBody] GetPlayersQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    ///  Get list of players
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("players/search")]
+    public async Task<IActionResult> Post([FromBody] GetPlayersQuery command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        ///  Get all operators
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("operators")]
-        public async Task<IActionResult> GetAllOperators(CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(new GetOperatorQuery());
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    ///  Get all operators
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("operators")]
+    public async Task<IActionResult> GetAllOperators(CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetOperatorQuery());
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        ///  Get all players
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("players")]
-        public async Task<IActionResult> GetAllPlayers(CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(new GetPlayersQuery());
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    ///  Get all players
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("players")]
+    public async Task<IActionResult> GetAllPlayers(CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetPlayersQuery());
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// List of users for Approval=
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("request/approval")]
-        public async Task<ActionResult> GetUsersForApprove([FromBody] GetUsersForApproveQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// List of users for Approval=
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("request/approval")]
+    public async Task<ActionResult> GetUsersForApprove([FromBody] GetUsersForApproveQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// List of users for Approval to all branches
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("request/approval/all")]
-        public async Task<ActionResult> GetUsersForApprovalAll([FromBody] GetUsersForApprovalAllQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// List of users for Approval to all branches
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("request/approval/all")]
+    public async Task<ActionResult> GetUsersForApprovalAll([FromBody] GetUsersForApprovalAllQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Approve user
-        /// </summary>
-        /// <param name="approvedUserCommand"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("approved")]
-        public async Task<ActionResult> Approved(ApprovedUserCommand approvedUserCommand, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(approvedUserCommand, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Approve user
+    /// </summary>
+    /// <param name="approvedUserCommand"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("approved")]
+    public async Task<ActionResult> Approved(ApprovedUserCommand approvedUserCommand, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(approvedUserCommand, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Decline user
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("declined")]
-        public async Task<ActionResult> Declined(DeclineUserCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Decline user
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("declined")]
+    public async Task<ActionResult> Declined(DeclineUserCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Create system user
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("system/create")]
-        public async Task<ActionResult> CreateSystemUserCommand(CreateSystemUserCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Create system user
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("system/create")]
+    public async Task<ActionResult> CreateSystemUserCommand(CreateSystemUserCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Create multiple users
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("bulk/create")]
-        public async Task<ActionResult> BulkCreateUserCommand(BulkCreateUserCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Create multiple users
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("bulk/create")]
+    public async Task<ActionResult> BulkCreateUserCommand(BulkCreateUserCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Create system user
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("mobile/validate")]
-        public async Task<ActionResult> ValidateMobileNumber(ValidateMobileNumberQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Create system user
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("mobile/validate")]
+    public async Task<ActionResult> ValidateMobileNumber(ValidateMobileNumberQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get user information by AccountInfoId
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("{userId}")]
-        public async Task<ActionResult> GetUserById(Guid userId, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(new GetSystemUserByIdQuery(userId), cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get user information by AccountInfoId
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("{userId}")]
+    public async Task<ActionResult> GetUserById(Guid userId, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetSystemUserByIdQuery(userId), cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get user information by AccountInfoId
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("details/{accountInfoId}")]
-        public async Task<ActionResult> GetAccountByInfoId(long accountInfoId, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(new GetUserByInfoIdCommand(accountInfoId), cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-        [HttpGet("mobileNumber")]
-        [AllowAnonymous]
-        public async Task<ActionResult> GetMobileNumberByObjectID([FromQuery] GetPlayerNumberByObjectIdQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get user information by AccountInfoId
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("details/{accountInfoId}")]
+    public async Task<ActionResult> GetAccountByInfoId(long accountInfoId, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetUserByInfoIdCommand(accountInfoId), cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
+    [HttpGet("mobileNumber")]
+    [AllowAnonymous]
+    public async Task<ActionResult> GetMobileNumberByObjectID([FromQuery] GetPlayerNumberByObjectIdQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get user information by AccountInfoId
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("accountObjectId")]
-        public async Task<ActionResult> GetSystemUsersByObjectID([FromQuery] GetSystemUsersByObjectIDQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get user information by AccountInfoId
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("accountObjectId")]
+    public async Task<ActionResult> GetSystemUsersByObjectID([FromQuery] GetSystemUsersByObjectIDQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get list of users filtered by company, branch and role.
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("list")]
-        public async Task<ActionResult> GetSystemUsersQuery([FromQuery] GetSystemUsersQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-
-        /// <summary>
-        /// Get pageinated list of users filtered by company, branch and role.
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("paginated-list")]
-        public async Task<ActionResult> GetPaginatedUserList([FromBody] GetPaginatedUsersQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return result.Success ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// Get list of users for loading
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("loading/list")]
-        public async Task<ActionResult> GetLoadUsersQuery([FromQuery] GetLoadUsersQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
-
-        /// <summary>
-        /// Get list of users for loading
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("paginate/loading/list")]
-        public async Task<ActionResult> GetLoadUsersPaginateQuery(GetLoadUserPaginateQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get list of users filtered by company, branch and role.
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("list")]
+    public async Task<ActionResult> GetSystemUsersQuery([FromQuery] GetSystemUsersQuery request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
 
-        /// <summary>
-        /// Get list of users by role
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("paginate/list/byrole")]
-        public async Task<ActionResult> GetListOfUsersByRole(GetPaginateUserByRoleQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get pageinated list of users filtered by company, branch and role.
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("paginated-list")]
+    public async Task<ActionResult> GetPaginatedUserList([FromBody] GetPaginatedUsersQuery request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get paginate verified users
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("paginate/list/verified")]
-        public async Task<ActionResult> GetPaginateVerifiedUser(GetPaginateVerifiedUserQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get list of users for loading
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("loading/list")]
+    public async Task<ActionResult> GetLoadUsersQuery([FromQuery] GetLoadUsersQuery request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get list of downline agents
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("downline/players")]
-        public async Task<ActionResult> GetDownlinePlayersQuery([FromBody] GetDownlinePlayersQuery request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get list of users for loading
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("paginate/loading/list")]
+    public async Task<ActionResult> GetLoadUsersPaginateQuery(GetLoadUserPaginateQuery request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get downline counts
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("downline/counts/{accountObjectId}")]
-        public async Task<ActionResult> GetDownlineCounts(Guid accountObjectId, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(new GetDownlineCountsQuery(accountObjectId), cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
 
-        /// <summary>
-        /// Get all users for verification
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("request/for-verifcation")]
-        public async Task<ActionResult> GetUserForVerification(GetUserForVerificationQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get list of users by role
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("paginate/list/byrole")]
+    public async Task<ActionResult> GetListOfUsersByRole(GetPaginateUserByRoleQuery request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Approve user verification
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("verified")]
-        public async Task<ActionResult> ApprovedVerification(ApproveUserVerificationCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get paginate verified users
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("paginate/list/verified")]
+    public async Task<ActionResult> GetPaginateVerifiedUser(GetPaginateVerifiedUserQuery request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Decline user verification
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("verification/declined")]
-        public async Task<ActionResult> VerificationDeclined(DeclinedUserVerificationCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get list of downline agents
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("downline/players")]
+    public async Task<ActionResult> GetDownlinePlayersQuery([FromBody] GetDownlinePlayersQuery request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Request user verification
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("getverified/request")]
-        public async Task<ActionResult> RequestGetVerified(RequestUserVerificationCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get downline counts
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("downline/counts/{accountObjectId}")]
+    public async Task<ActionResult> GetDownlineCounts(Guid accountObjectId, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(new GetDownlineCountsQuery(accountObjectId), cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// List all verified users
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("verified/list")]
-        public async Task<ActionResult> VerifiedUsersList([FromQuery] GetVerifiedUsersQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get all users for verification
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("request/for-verifcation")]
+    public async Task<ActionResult> GetUserForVerification(GetUserForVerificationQuery command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// List all semi-verified users
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("semi-verified/list")]
-        public async Task<ActionResult> SemiVerifiedUsersList([FromBody] GetSemiVerifiedUsersQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Approve user verification
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("verified")]
+    public async Task<ActionResult> ApprovedVerification(ApproveUserVerificationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Export all semi-verified users
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("semi-verified/list/export")]
-        public async Task<ActionResult> SemiVerifiedUsersListExport([FromBody] GetSemiVerifiedUsersExportQuery request, CancellationToken cancellationToken)
-        {
-            var response = await Mediator.Send(request, cancellationToken);
-            return Ok(response);
-        }
+    /// <summary>
+    /// Decline user verification
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("verification/declined")]
+    public async Task<ActionResult> VerificationDeclined(DeclinedUserVerificationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// List all fully-verified users
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("fully-verified/list")]
-        public async Task<ActionResult> FullyVerifiedUsersList([FromBody] GetFullyVerifiedUsersQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Request user verification
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("getverified/request")]
+    public async Task<ActionResult> RequestGetVerified(RequestUserVerificationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Export all fully-verified users
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPost("fully-verified/list/export")]
-        public async Task<ActionResult> FullyVerifiedUsersListExport([FromBody] GetFullyVerifiedUsersExportQuery request, CancellationToken cancellationToken)
-        {
-            var response = await Mediator.Send(request, cancellationToken);
-            return Ok(response);
-        }
+    /// <summary>
+    /// List all verified users
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("verified/list")]
+    public async Task<ActionResult> VerifiedUsersList([FromQuery] GetVerifiedUsersQuery command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// List all verified users
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("players/list")]
-        public async Task<ActionResult> GetPlayersList([FromQuery] GetPlayersListQuery command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// List all semi-verified users
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("semi-verified/list")]
+    public async Task<ActionResult> SemiVerifiedUsersList([FromBody] GetSemiVerifiedUsersQuery command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Update user statuses
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("update/statuses")]
-        public async Task<ActionResult> UpdateUserStatuses(UpdateUserStatusesCommand command, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(command, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Export all semi-verified users
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("semi-verified/list/export")]
+    public async Task<ActionResult> SemiVerifiedUsersListExport([FromBody] GetSemiVerifiedUsersExportQuery request, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
 
-        /// <summary>
-        /// Get upline recruiter
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("upline")]
-        public async Task<ActionResult> GetUserUpline([FromQuery] GetUserUplineQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// List all fully-verified users
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("fully-verified/list")]
+    public async Task<ActionResult> FullyVerifiedUsersList([FromBody] GetFullyVerifiedUsersQuery command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get Users for Notifincation
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("list/to-notify")]
-        public async Task<ActionResult> GetUserListToNotify([FromQuery] GetUserForNotificationQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Export all fully-verified users
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPost("fully-verified/list/export")]
+    public async Task<ActionResult> FullyVerifiedUsersListExport([FromBody] GetFullyVerifiedUsersExportQuery request, CancellationToken cancellationToken)
+    {
+        var response = await Mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
 
-        /// <summary>
-        /// Get company Main Operator
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("company/main/operator")]
-        public async Task<ActionResult> GetCompanyMainOperator([FromQuery] GetMainOperatorQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// List all verified users
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("players/list")]
+    public async Task<ActionResult> GetPlayersList([FromQuery] GetPlayersListQuery command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Get downline users
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpGet("downline")]
-        public async Task<ActionResult> GetDownlineUsers([FromQuery] GetDownlineUsersQuery query, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(query, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Update user statuses
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("update/statuses")]
+    public async Task<ActionResult> UpdateUserStatuses(UpdateUserStatusesCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
 
-        /// <summary>
-        /// Update downline user
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        [HttpPatch("update/downline")]
-        public async Task<ActionResult> GetDownlineUsers(UpdateUserDownlineCommand request, CancellationToken cancellationToken)
-        {
-            var result = await Mediator.Send(request, cancellationToken);
-            return (result.Success) ? Ok(result) : BadRequest(result);
-        }
+    /// <summary>
+    /// Get upline recruiter
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("upline")]
+    public async Task<ActionResult> GetUserUpline([FromQuery] GetUserUplineQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
+
+    /// <summary>
+    /// Get Users for Notifincation
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("list/to-notify")]
+    public async Task<ActionResult> GetUserListToNotify([FromQuery] GetUserForNotificationQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
+
+    /// <summary>
+    /// Get company Main Operator
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("company/main/operator")]
+    public async Task<ActionResult> GetCompanyMainOperator([FromQuery] GetMainOperatorQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
+
+    /// <summary>
+    /// Get downline users
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpGet("downline")]
+    public async Task<ActionResult> GetDownlineUsers([FromQuery] GetDownlineUsersQuery query, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(query, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
+
+    /// <summary>
+    /// Update downline user
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("update/downline")]
+    public async Task<ActionResult> GetDownlineUsers(UpdateUserDownlineCommand request, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(request, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
     }
 }

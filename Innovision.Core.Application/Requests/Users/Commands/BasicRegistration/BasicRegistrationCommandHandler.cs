@@ -1,6 +1,8 @@
 using Innovision.Core.Application.Common;
+using Innovision.Core.Application.Common.Contants;
 using Innovision.Core.Application.Common.Services;
 using Innovision.Core.Application.Interfaces;
+using Innovision.Core.Application.Notifications.MessageBrokers;
 using Innovision.Core.Application.Requests.Accounts.Commands.AddToUserIdentityWIthCredential;
 using Innovision.Core.Domain.Entity;
 using MediatR;
@@ -13,38 +15,23 @@ public class BasicRegistrationCommandHandler(ICoreDbContext dbContext, IMediator
     private readonly ICoreDbContext _dbContext = dbContext;
     private readonly IMediator _mediator = mediator;
 
+
     public async Task<ApiResponse<Guid>> Handle(BasicRegistrationCommand request, CancellationToken cancellationToken)
     {
         try
         {
             var isExists = _dbContext.Accounts.Where(x => x.MobileNumber == request.MobileNumber
-                    && (
-                            x.AccountStatusId == Domain.Enums.AccountStatus.ForApproval
-                            || x.AccountStatusId == Domain.Enums.AccountStatus.Migrated
-                            || x.AccountStatusId == Domain.Enums.AccountStatus.Approved
-                            || x.AccountStatusId == Domain.Enums.AccountStatus.Block
-                            || x.AccountStatusId == Domain.Enums.AccountStatus.Completed
-                       )
-                    ).Any();
+                    && RegisteredAccountStatus.EXISTING_ACCOUNT_STATUS.Contains(x.AccountStatusId)).Any();
 
             if (isExists)
                 return new ApiResponse<Guid>() { Success = false, ErrorMessage = $"Mobile Number:  {request.MobileNumber} already exist" };
-
-            //if (string.IsNullOrWhiteSpace(request.ReferralCode))
-            //{
-            //    var acct = await _dbContext.Accounts.Where(m => m.RefferralKey == request.ReferralCode).FirstOrDefaultAsync();
-            //    request.ReferralCode = acct?.RefferralKey;
-
-            //    _defaultBranch = acct.BranchId;
-            //}
 
             var accountInfo = CreateAccount(request, Guid.NewGuid(), Guid.NewGuid(), _defaultBranch);
 
             _dbContext.Accounts.Add(accountInfo);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            //await _mediator.Publish(new AddAccountMigrationNotification(accountInfo.AccountObjectId), cancellationToken).ConfigureAwait(false);
-            await _mediator.Send(new AddToIdentityWIthCredCommand(accountInfo.AccountObjectId, request.Password), cancellationToken);
+            await _mediator.Publish(new AddAccountMigrationNotification(accountInfo.AccountObjectId), cancellationToken).ConfigureAwait(false);
 
             return new ApiResponse<Guid>() { Data = accountInfo.AccountObjectId };
         }
@@ -55,7 +42,7 @@ public class BasicRegistrationCommandHandler(ICoreDbContext dbContext, IMediator
     }
 
     private Account CreateAccount(BasicRegistrationCommand request, Guid acctObjId, Guid userId, int branchId) =>
-        new Account
+        new()
         {
             AccountObjectId = acctObjId,
             BranchId = branchId,
@@ -66,16 +53,14 @@ public class BasicRegistrationCommandHandler(ICoreDbContext dbContext, IMediator
             UserName = request.UserName,
             Commision = 0,
             SalaryRange = null,
-
             FirstName = (request.FullName.Split().Length > 0) ? request.FullName.Split()[0] : string.Empty,
             LastName = (request.FullName.Split().Length > 1) ? request.FullName.Split()[1] : string.Empty,
-
             IsActive = true,
             AccountStatusId = Domain.Enums.AccountStatus.Approved,
             UserTypeId = Domain.Enums.UserTypes.Player,
             ForVerification = false,
-
             CreatedOn = DateTime.UtcNow,
-            IsMain = false
+            IsMain = false,
+            ScreenName = request.UserName
         };
 }
