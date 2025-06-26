@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using Innovision.Core.Application.Common.Interfaces;
 using Innovision.Core.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Innovision.Core.Application.Requests.Accounts.Users.Operator;
 public class OperatorListDto : IMapFrom<Account>

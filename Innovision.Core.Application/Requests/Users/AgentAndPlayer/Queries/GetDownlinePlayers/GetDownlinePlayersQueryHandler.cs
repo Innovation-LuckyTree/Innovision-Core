@@ -2,7 +2,6 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Innovision.Core.Application.Common;
 using Innovision.Core.Application.Interfaces;
-using Innovision.Core.Application.Requests.Users.AccountApproval.Queries.GetUsersForApprove;
 using Innovision.Core.Common.Interfaces;
 using Innovision.Core.Common.Models;
 using Innovision.Core.Domain.Entity;

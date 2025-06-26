@@ -22,8 +22,6 @@ public class UpdateUserByAccountObjectIdCommandHandler(ICoreDbContext dbContext,
                 return new ApiResponse<bool>() { Success = false, ErrorMessage = $"Mobile Number:  {request.MobileNumber} already exist" };
 
 
-            //var accountInfo = CreateAccount(request, Guid.NewGuid(), Guid.NewGuid(), request.BranchId);
-
             user.BranchId = request.BranchId;
             user.MobileNumber = request.MobileNumber;
 
@@ -45,29 +43,22 @@ public class UpdateUserByAccountObjectIdCommandHandler(ICoreDbContext dbContext,
             user.BackIdPath = request.BackIdPath;
             user.SignaturePath = request.SignaturePath;
 
-            user.Region = request.PresentRegion;
-            user.Province = request.PresentProvince;
-            user.Municipality = request.PresentMunicipality;
-            user.Barangay = request.PresentBarangay;
+            user.PresentAddress.Region = request.PresentRegion;
+            user.PresentAddress.Province = request.PresentProvince;
+            user.PresentAddress.Municipality = request.PresentMunicipality;
+            user.PresentAddress.Barangay = request.PresentBarangay;
+            user.PresentAddress.StreetOrPurok = request.PresentStreetOrPurok;
 
-            user.StreetOrPurok = request.PresentStreetOrPurok;
-
-            user.PresentRegion = request.PresentRegion;
-            user.PresentProvince = request.PresentProvince;
-            user.PresentMunicipality = request.PresentMunicipality;
-            user.PresentBarangay = request.PresentBarangay;
-            user.PresentStreetOrPurok = request.PresentStreetOrPurok;
-
-            user.PermanentRegion = request.PermanentRegion;
-            user.PermanentProvince = request.PermanentProvince;
-            user.PermanentMunicipality = request.PermanentMunicipality;
-            user.PermanentBarangay = request.PermanentBarangay;
-            user.PermanentStreetOrPurok = request.PermanentStreetOrPurok;
+            user.PermanentAddress.Region = request.PermanentRegion;
+            user.PermanentAddress.Province = request.PermanentProvince;
+            user.PermanentAddress.Municipality = request.PermanentMunicipality;
+            user.PermanentAddress.Barangay = request.PermanentBarangay;
+            user.PermanentAddress.StreetOrPurok = request.PermanentStreetOrPurok;
 
             user.ForVerification = true;
             user.IsActive = true;
 
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
 
             //await _mediator.Send(new SendNotificationCommand(user.Branch.CompanyId), cancellationToken).ConfigureAwait(false);
 

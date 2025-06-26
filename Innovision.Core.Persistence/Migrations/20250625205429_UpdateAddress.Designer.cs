@@ -4,6 +4,7 @@ using Innovision.Core.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Innovision.Core.Persistence.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    partial class CoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250625205429_UpdateAddress")]
+    partial class UpdateAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,14 +205,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Property<string>("SourceOfIncome")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
-
-                    b.Property<string>("StreetOrPurok")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Suffix")
-                        .HasMaxLength(5)
-                        .HasColumnType("character varying(5)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");

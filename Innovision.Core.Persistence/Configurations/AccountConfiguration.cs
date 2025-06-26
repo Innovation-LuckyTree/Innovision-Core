@@ -87,66 +87,6 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .HasMaxLength(20)
             .IsRequired(false);
 
-        builder.Property(e => e.Region)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.Province)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.Municipality)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.Barangay)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.StreetOrPurok)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PresentRegion)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PresentProvince)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PresentMunicipality)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PresentBarangay)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PresentStreetOrPurok)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentRegion)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentProvince)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentMunicipality)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentBarangay)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentStreetOrPurok)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
         builder.Property(e => e.RefferralCode)
             .HasMaxLength(100)
             .IsRequired(false);
@@ -182,7 +122,7 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         builder.Property(e => e.RefferralKey)
             .IsRequired(false)
             .HasMaxLength(100);
-            
+
         builder.Property(e => e.IsActive)
             .HasDefaultValue(0);
 
@@ -197,7 +137,7 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .HasMaxLength(100);
 
         builder.Property(e => e.LastModified);
-        
+
         builder.Property(e => e.ModifiedBy)
             .HasMaxLength(100);
 
@@ -217,5 +157,15 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
         builder.HasOne(e => e.UserType)
             .WithMany(f => f.Accounts)
             .HasForeignKey(e => e.UserTypeId);
+
+        builder.HasOne(e => e.PresentAddress)
+            .WithMany(f => f.PresentAccountAddresses)
+            .HasForeignKey(e => e.PresentAddressId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        builder.HasOne(e => e.PermanentAddress)
+            .WithMany(f => f.PermanentAccountAddresses)
+            .HasForeignKey(e => e.PermanentAddressId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -26,17 +26,11 @@ public class UpdateAddressCommandHandler(ICoreDbContext dbContext, ICurrentUserS
                 && !string.IsNullOrEmpty(request.PresentMunicipality) && !string.IsNullOrEmpty(request.PresentBarangay)
                 && !string.IsNullOrEmpty(request.PresentStreetOrPurok))
             {
-                account.Region = request.PresentRegion;
-                account.Province = request.PresentProvince;
-                account.Municipality = request.PresentMunicipality;
-                account.Barangay = request.PresentBarangay;
-                account.StreetOrPurok = request.PresentStreetOrPurok;
-
-                account.PresentRegion = request.PresentRegion;
-                account.PresentProvince = request.PresentProvince;
-                account.PresentMunicipality = request.PresentMunicipality;
-                account.PresentBarangay = request.PresentBarangay;
-                account.PresentStreetOrPurok = request.PresentStreetOrPurok;
+                account.PresentAddress.Region = request.PresentRegion;
+                account.PresentAddress.Province = request.PresentProvince;
+                account.PresentAddress.Municipality = request.PresentMunicipality;
+                account.PresentAddress.Barangay = request.PresentBarangay;
+                account.PresentAddress.StreetOrPurok = request.PresentStreetOrPurok;
 
                 //account.AddressCodes.FirstOrDefault();
             }
@@ -45,11 +39,11 @@ public class UpdateAddressCommandHandler(ICoreDbContext dbContext, ICurrentUserS
                 && !string.IsNullOrEmpty(request.PermanentMunicipality) && !string.IsNullOrEmpty(request.PermanentBarangay)
                 && !string.IsNullOrEmpty(request.PermanentStreetOrPurok))
             {
-                account.PermanentRegion = request.PermanentRegion;
-                account.PermanentProvince = request.PermanentProvince;
-                account.PermanentMunicipality = request.PermanentMunicipality;
-                account.PermanentBarangay = request.PermanentBarangay;
-                account.PermanentStreetOrPurok = request.PermanentStreetOrPurok;
+                account.PermanentAddress.Region = request.PermanentRegion;
+                account.PermanentAddress.Province = request.PermanentProvince;
+                account.PermanentAddress.Municipality = request.PermanentMunicipality;
+                account.PermanentAddress.Barangay = request.PermanentBarangay;
+                account.PermanentAddress.StreetOrPurok = request.PermanentStreetOrPurok;
             }
 
             account.LastModified = DateTime.UtcNow;

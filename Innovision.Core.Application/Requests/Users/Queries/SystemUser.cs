@@ -104,7 +104,6 @@ namespace Innovision.Core.Application.Requests.Users.Queries
               .ForMember(t => t.RefferralCode, f => f.MapFrom(src => src.RefferralCode))
               .ForMember(t => t.FmTypeId, f => f.MapFrom(src => src.FmTypeId))
 
-
               .ForMember(t => t.Remarks, f => f.MapFrom(src => src.Remarks))
 
               .ForMember(t => t.AdministrativeExclusion, f => f.MapFrom(src => src.AdministrativeExclusions.Where(x => x.Status == 1).Any()))

@@ -13,6 +13,7 @@ public class CoreDbContext : DbContext, ICoreDbContext
     }
 
     public DbSet<Account> Accounts { get; set; }
+    public DbSet<Address> Addresses { get; set; }
     public DbSet<Branch> Branches { get; set; }
     public DbSet<UserType> UserTypes { get; set; }
     public DbSet<Game> Games { get; set; }

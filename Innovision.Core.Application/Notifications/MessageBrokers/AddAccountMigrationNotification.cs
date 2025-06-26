@@ -14,7 +14,7 @@ public class AddAccountMigrationCommandHandler(IMessageBrokerClientApi messageBr
     {
         try
         {
-            var record = new CreateRecordRequest<UserMigrationInfo>("migrate-account", new UserMigrationInfo(notification.AccountObjectId));
+            var record = new CreateRecordRequest<UserMigrationInfo>("inno-migrate-account", new UserMigrationInfo(notification.AccountObjectId));
             _ = await _messageBrokerApi.AddRecordAsync(record, cancellationToken);
 
             var reportRecord = new CreateRecordRequest<UserMigrationInfo>("migrate-account-report", new UserMigrationInfo(notification.AccountObjectId));

@@ -12,21 +12,19 @@ public class BranchServices : IBranchServices
         return new Branch
         {
             BranchName = branchName,
-            Region = details.Region,
-            Province = details.Province,
-            Municipality = details.Municipality,
-            Barangay = details.Barangay,
-            StreetOrPurok = details.StreetOrPurok,
-            PermanentRegion = details.Region,
-            PermanentProvince = details.Province,
-            PermanentMunicipality = details.Municipality,
-            PermanentBarangay = details.Barangay,
-            PermanentStreetOrPurok = details.StreetOrPurok,
+            Address = new Address
+            {
+                Region = details.Region,
+                Province = details.Province,
+                Municipality = details.Municipality,
+                Barangay = details.Barangay,
+                StreetOrPurok = details.StreetOrPurok
+            },
             IsActive = IsActive,
             IsMain = IsMain,
             CreatedBy = string.IsNullOrEmpty(_currentUserService.UserId) ? "System" : _currentUserService.UserId,
             ModifiedBy = string.IsNullOrEmpty(_currentUserService.UserId) ? "System" : _currentUserService.UserId,
-            Account = new[] { branchOperator }
+            Account = [branchOperator]
         };
     }
 }

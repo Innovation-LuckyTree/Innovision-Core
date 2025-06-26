@@ -122,7 +122,7 @@ public class CreateSystemUserCommandHandler(ICoreDbContext dbContext, IAppConfig
                     await _dbContext.SaveChangesAsync(cancellationToken);
                 }
             }
-            
+
             await _mediator.Publish(new AddAccountMigrationNotification(accountInfo.AccountObjectId), cancellationToken).ConfigureAwait(false);
 
             return new ApiResponse<Guid>() { Data = accountInfo.AccountObjectId };
@@ -159,25 +159,22 @@ public class CreateSystemUserCommandHandler(ICoreDbContext dbContext, IAppConfig
             SelfiePath = request.SelfiePath,
             BackIdPath = request.BackIdPath,
             SignaturePath = request.SignaturePath,
-
-            Region = request.PresentRegion,
-            Province = request.PresentProvince,
-            Municipality = request.PresentMunicipality,
-            Barangay = request.PresentBarangay,
-            StreetOrPurok = request.PresentStreetOrPurok,
-
-            PresentRegion = request.PresentRegion,
-            PresentProvince = request.PresentProvince,
-            PresentMunicipality = request.PresentMunicipality,
-            PresentBarangay = request.PresentBarangay,
-            PresentStreetOrPurok = request.PresentStreetOrPurok,
-
-            PermanentRegion = request.PermanentRegion,
-            PermanentProvince = request.PermanentProvince,
-            PermanentMunicipality = request.PermanentMunicipality,
-            PermanentBarangay = request.PermanentBarangay,
-            PermanentStreetOrPurok = request.PermanentStreetOrPurok,
-
+            PresentAddress = new Address
+            {
+                Region = request.PresentRegion,
+                Province = request.PresentProvince,
+                Municipality = request.PresentMunicipality,
+                Barangay = request.PresentBarangay,
+                StreetOrPurok = request.PresentStreetOrPurok
+            },
+            PermanentAddress = new Address
+            {
+                Region = request.PermanentRegion,
+                Province = request.PermanentProvince,
+                Municipality = request.PermanentMunicipality,
+                Barangay = request.PermanentBarangay,
+                StreetOrPurok = request.PermanentStreetOrPurok
+            },
             AddressCodes = [new AddressCode
             {
                 RegionCode = request.AddressCode.RegionCode,

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Innovision.Core.Application.Requests.Accounts.Users.Operator;
+﻿namespace Innovision.Core.Application.Requests.Accounts.Users.Operator;
 public class OperatorListVm
 {
     public int Total { get; set; }

@@ -33,49 +33,16 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
         builder.Property(e => e.DefaultAccountId)
             .IsRequired(false);
 
-        builder.Property(e => e.Region)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.Province)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.Municipality)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.Barangay)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.StreetOrPurok)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentRegion)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentProvince)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentMunicipality)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentBarangay)
-            .HasMaxLength(100)
-            .IsRequired(false);
-
-        builder.Property(e => e.PermanentStreetOrPurok)
-            .HasMaxLength(100)
-            .IsRequired(false);
         builder.Property(e => e.CreatedBy).HasMaxLength(100);
 
         builder.Property(e => e.LastModified);
 
         builder.Property(e => e.ModifiedBy).HasMaxLength(100);
+
+
+        builder.HasOne(e => e.Address)
+            .WithMany(f => f.Branches)
+            .HasForeignKey(e => e.AddressId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }
