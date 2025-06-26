@@ -26,7 +26,6 @@ public class GetOrderedByIdItemsQueryHandler : IRequestHandler<GetOrderedByIdIte
 
         var orderedItems = await _dbContext.OrderItems
             .Include(o => o.Order)
-            .Include(o => o.GameType)
             .Where(o => o.AccountInfoId == currentUser.AccountInfoId && o.OrderId == request.OrderId && !o.IsDeleted)
             .ProjectTo<OrderItemDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);

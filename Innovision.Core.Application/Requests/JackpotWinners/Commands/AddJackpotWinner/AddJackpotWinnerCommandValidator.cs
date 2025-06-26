@@ -12,9 +12,6 @@ public class AddJackpotWinnerCommandValidator : AbstractValidator<AddJackpotWinn
         RuleFor(o => o.DrawResultId)
             .GreaterThan(0);
 
-        RuleFor(o => o.GameTypeId)
-            .GreaterThan(0);
-
         RuleFor(o => o.GameId)
             .GreaterThan(0);
 

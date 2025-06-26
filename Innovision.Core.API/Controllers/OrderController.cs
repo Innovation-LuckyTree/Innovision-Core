@@ -1,5 +1,4 @@
 using Innovision.Core.Application.Requests.Orders.Commands.AddItemOrder;
-using Innovision.Core.Application.Requests.Orders.Commands.AdvanceScheduleOrderItem;
 using Innovision.Core.Application.Requests.Orders.Commands.RevertOrderItems;
 using Innovision.Core.Application.Requests.Orders.Commands.ScheduleOrderItems;
 using Innovision.Core.Application.Requests.Orders.Queries.GetAccountOrdersRange;
@@ -133,14 +132,6 @@ public class OrderController : ApiBaseController
 
     [HttpPost("schedule/revert")]
     public async Task<IActionResult> RevertOrderItems(RevertOrderItemsCommand request, CancellationToken cancellationToken)
-    {
-        var result = await Mediator.Send(request, cancellationToken);
-
-        return Ok(result);
-    }
-
-    [HttpPost("schedule/advance")]
-    public async Task<IActionResult> AdvanceScheduleOrderedItems(AdvanceScheduleOrderItemCommand request, CancellationToken cancellationToken)
     {
         var result = await Mediator.Send(request, cancellationToken);
 

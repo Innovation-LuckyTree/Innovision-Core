@@ -10,7 +10,6 @@ public partial class JackpotWinner : AuditableEntity
     public string TransactionNo { get; set; }
     public string BetValue { get; set; }
     public long DrawResultId { get; set; }
-    public int GameTypeId { get; set; }
     public string GameTypeName { get; set; }
     public int GameId { get; set; }
     public string DrawResult { get; set; }
@@ -34,7 +33,6 @@ public partial class JackpotWinner : AuditableEntity
     public virtual Account ApproverAccount { get; set; }
     public virtual Account ReleaserAccount { get; set; }
     public virtual Game Game { get; set; }
-    public virtual GameType GameType { get; set; }
     public virtual OrderItem OrderItem { get; set; }
     public virtual JackpotWinnerStatus JackpotWinnerStatus { get; set; }
     public virtual IEnumerable<JackpotWinnerAttachment> JackpotWinnerAttachments { get; set; }

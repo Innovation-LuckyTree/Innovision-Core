@@ -16,8 +16,6 @@ public class GetOrderItemsListQueryHandler(ICoreDbContext dbContext, IMapper map
         var orderItemList = await _dbContext.OrderItems.Where(e => e.OrderItemId > request.OrderItemId && !e.IsDeleted)
             .Include(e => e.AccountInfo)
                 .ThenInclude(s => s.Branch)
-            .Include(e => e.GameType)
-                .ThenInclude(g => g.Game)
             .OrderBy(e => e.OrderItemId)
             .ProjectTo<OrderItemDetailDto>(_mapper.ConfigurationProvider)
             .Take(request.Size)

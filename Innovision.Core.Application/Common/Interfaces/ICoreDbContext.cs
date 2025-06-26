@@ -11,11 +11,10 @@ public interface ICoreDbContext
     DbSet<Branch> Branches { get; set; }
     DbSet<UserType> UserTypes { get; set; }
     DbSet<Game> Games { get; set; }
-    DbSet<GameCategory> GameCategory { get; set; }
-    DbSet<GameProvider> GameProvider { get; set; }
-    DbSet<GameStatus> GameStatus { get; set; }
-    DbSet<GameDrawType> GameDrawTypes { get; set; }
-    DbSet<GameType> GameTypes { get; set; }
+    DbSet<GameCatalog> GameCatalogs { get; set; }
+    DbSet<GameCategory> GameCategories { get; set; }
+    DbSet<GameProvider> GameProviders { get; set; }
+    DbSet<GameStatus> GameStatuses { get; set; }
     DbSet<Order> Orders { get; set; }
     DbSet<OrderItem> OrderItems { get; set; }
     DbSet<OTP> Otps { get; set; }
@@ -44,6 +43,7 @@ public interface ICoreDbContext
     DbSet<QuarantineKafka> QuarantineKafkas { get; set; }
     DbSet<SelfExclusion> SelfExclusions { get; set; }
     DbSet<AuditLog> AuditLogs { get; set; }
+    DbSet<DrawResult> DrawResults { get; set; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     IQueryable<T> CreateQuery<T>(string sqlQuery) where T : class;

@@ -21,9 +21,9 @@ public class JackpotWinnerConfiguration : IEntityTypeConfiguration<JackpotWinner
             .WithMany(f => f.JackpotWinners)
             .HasForeignKey(f => f.GameId);
 
-        builder.HasOne(e => e.GameType)
-            .WithMany(f => f.JackpotWinners)
-            .HasForeignKey(f => f.GameTypeId);
+        // builder.HasOne(e => e.GameType)
+        //     .WithMany(f => f.JackpotWinners)
+        //     .HasForeignKey(f => f.GameTypeId);
 
         builder.HasOne(e => e.Account)
             .WithMany(f => f.JackpotWinners)

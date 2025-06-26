@@ -13,7 +13,6 @@ public class AccountJackpotWinnerDto : IMapFrom<JackpotWinner>
     public string LastName { get; set; }
     public string BetValue { get; set; }
     public long DrawResultId { get; set; }
-    public int GameTypeId { get; set; }
     public string GameTypeName { get; set; }
     public string DrawResult { get; set; }
     public long OrderItemId { get; set; }
@@ -51,7 +50,6 @@ public class AccountJackpotWinnerDto : IMapFrom<JackpotWinner>
             .ForMember(t => t.LastName, f => f.MapFrom(src => src.Account.LastName))
             .ForMember(t => t.BetValue, f => f.MapFrom(src => src.BetValue))
             .ForMember(t => t.DrawResultId, f => f.MapFrom(src => src.DrawResultId))
-            .ForMember(t => t.GameTypeId, f => f.MapFrom(src => src.GameTypeId))
             .ForMember(t => t.GameTypeName, f => f.MapFrom(src => src.GameTypeName))
             .ForMember(t => t.DrawResult, f => f.MapFrom(src => src.DrawResult))
             .ForMember(t => t.OrderItemId, f => f.MapFrom(src => src.OrderItemId))

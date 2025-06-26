@@ -26,7 +26,6 @@ public class GetUserCurrentUnusedItemsQueryHandler : IRequestHandler<GetUserCurr
 
         var unusedOrderedItems = await _dbContext.OrderItems
             .Include(o => o.Order)
-            .Include(o => o.GameType)
             .Where(o => o.AccountInfoId == currentUser.AccountInfoId && o.Order.GameId == request.GameId && !o.Used && !o.IsDeleted && o.CreatedOn >= request.OpenSchedule)
             .ProjectTo<OrderItemDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);

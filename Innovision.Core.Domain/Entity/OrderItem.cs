@@ -10,7 +10,6 @@ public partial class OrderItem : AuditableEntity
     public bool Used { get; set; } = false;
     public string Values { get; set; }
     public Guid? ItemId { get; set; } // previously called as BetId
-    public int GameTypeId { get; set; }
     public int BetItemType { get; set; } // 0-Straight, 1-Shuffle
     public int CompanyGameId { get; set; }
     public decimal AmountBet { get; set; } = 0;
@@ -24,6 +23,5 @@ public partial class OrderItem : AuditableEntity
 
     public virtual Order Order { get; set; }
     public virtual Account AccountInfo { get; set; }
-    public virtual GameType GameType { get; set; }
     public virtual JackpotWinner JackpotWinner { get; set; }
 }

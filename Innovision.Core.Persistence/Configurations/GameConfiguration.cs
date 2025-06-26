@@ -26,15 +26,15 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
             .IsRequired(false);
 
         builder.HasOne(e => e.GameCategory)
-            .WithMany(f => f.Game)
+            .WithMany(f => f.Games)
             .HasForeignKey(e => e.GameCategoryId);
             
         builder.HasOne(e => e.GameProvider)
-            .WithMany(f => f.Game)
+            .WithMany(f => f.Games)
             .HasForeignKey(e => e.GameProviderId);
             
         builder.HasOne(e => e.GameStatus)
-            .WithMany(f => f.Game)
+            .WithMany(f => f.Games)
             .HasForeignKey(e => e.GameStatusId);
 
         builder.Property(e => e.CoverImage)

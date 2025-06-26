@@ -43,8 +43,8 @@ public class OrderItemConfiguration : IEntityTypeConfiguration<OrderItem>
             .WithMany(f => f.OrderItems)
             .HasForeignKey(e => e.OrderId);
 
-        builder.HasOne(e => e.GameType)
-            .WithMany(f => f.OrderItems)
-            .HasForeignKey(e => e.GameTypeId);
+        // builder.HasOne(e => e.GameType)
+        //     .WithMany(f => f.OrderItems)
+        //     .HasForeignKey(e => e.GameTypeId);
     }
 }

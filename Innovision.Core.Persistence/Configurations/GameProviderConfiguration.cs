@@ -23,5 +23,7 @@ public class GameProviderConfiguration : IEntityTypeConfiguration<GameProvider>
         builder.Property(e => e.CoverImage)
             .IsRequired(false);
 
+        builder.Property(e => e.Configuration)
+            .IsRequired(false);
     }
 }

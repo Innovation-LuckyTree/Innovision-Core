@@ -17,11 +17,10 @@ public class CoreDbContext : DbContext, ICoreDbContext
     public DbSet<Branch> Branches { get; set; }
     public DbSet<UserType> UserTypes { get; set; }
     public DbSet<Game> Games { get; set; }
-    public DbSet<GameCategory> GameCategory { get; set; }
-    public DbSet<GameProvider> GameProvider { get; set; }
-    public DbSet<GameStatus> GameStatus { get; set; }
-    public DbSet<GameDrawType> GameDrawTypes { get; set; }
-    public DbSet<GameType> GameTypes { get; set; }
+    public DbSet<GameCatalog> GameCatalogs { get; set; }
+    public DbSet<GameCategory> GameCategories { get; set; }
+    public DbSet<GameProvider> GameProviders { get; set; }
+    public DbSet<GameStatus> GameStatuses { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<OTP> Otps { get; set; }
@@ -50,6 +49,7 @@ public class CoreDbContext : DbContext, ICoreDbContext
     public DbSet<QuarantineKafka> QuarantineKafkas { get; set; }
     public DbSet<SelfExclusion> SelfExclusions { get; set; }
     public DbSet<AuditLog> AuditLogs { get; set; }
+    public DbSet<DrawResult> DrawResults { get; set; }
 
     public DatabaseFacade Database => base.Database;
 

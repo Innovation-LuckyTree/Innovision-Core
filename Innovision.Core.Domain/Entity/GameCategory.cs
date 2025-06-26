@@ -6,6 +6,8 @@ public class GameCategory
     public string Name { get; set; }
     public string Description { get; set; }
     public string CoverImage { get; set; }
-    
-    public virtual ICollection<Game> Game { get; set; }
+
+    public virtual ICollection<GameCatalog> GameCatalogs { get; set; }
+    public virtual ICollection<GameProvider> GameProviders { get; set; }
+    public virtual ICollection<Game> Games { get; set; }
 }

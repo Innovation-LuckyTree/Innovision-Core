@@ -25,15 +25,11 @@ public class AddItemOrderCommandHandler : IRequestHandler<AddItemOrderCommand, O
     {
         var currentUser = await _mediator.Send(new GetCurrentAccountInfoQuery(), cancellationToken);
 
-        var gameType = await _dbContext.GameTypes.Where(o => request.OrderItems.Select(e => e.GameTypeId).Contains(o.GameTypeId))
-            .ToListAsync(cancellationToken);
-
         var orderedItems = request.OrderItems
             .Select(o => new OrderItem
             {
                 AccountInfoId = currentUser.AccountInfoId,
                 Values = o.Values,
-                GameTypeId = o.GameTypeId,
                 BetItemType = o.BetItemType,
                 AmountBet = o.AmountBet,
                 ExcessAmount = o.ExcessAmount,
@@ -59,8 +55,8 @@ public class AddItemOrderCommandHandler : IRequestHandler<AddItemOrderCommand, O
 
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        _backgroundQueue.Enqueue(new AddOrderMigrationNotification(
-            order.OrderId, request.GameId, gameType.First().GameTypeName, currentUser.AccountInfoId, order.TransactionNo, order.TotalAmount, order.TotalNoOfItems, order.CreatedOn, request.IsBonus ?? false));
+        // _backgroundQueue.Enqueue(new AddOrderMigrationNotification(
+        //     order.OrderId, request.GameId, game.GameTypeName, currentUser.AccountInfoId, order.TransactionNo, order.TotalAmount, order.TotalNoOfItems, order.CreatedOn, request.IsBonus ?? false));
 
         var orderItemIds = order.OrderItems.Select(o => o.OrderItemId);
         return new OrderItemVm(order.OrderId, order.TransactionNo, orderItemIds, order.TotalAmount);
