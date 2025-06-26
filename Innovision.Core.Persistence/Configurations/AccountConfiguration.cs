@@ -33,6 +33,10 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .HasMaxLength(50)
             .IsRequired(false);
 
+        builder.Property(e => e.Suffix)
+            .HasMaxLength(5)
+            .IsRequired(false);
+
         builder.Property(e => e.Email)
             .HasMaxLength(50)
             .IsRequired(false);

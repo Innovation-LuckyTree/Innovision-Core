@@ -49,22 +49,6 @@ namespace Innovision.Core.Application.Requests.Users.Queries
 
         public int RoleId { get; set; }
         public string RoleName { get; set; }
-
-        public string? Region { get; set; }
-        public string? Province { get; set; }
-        public string? Municipality { get; set; }
-        public string? Barangay { get; set; }
-        public string? StreetOrPurok { get; set; }
-        public string? PresentRegion { get; set; }
-        public string? PresentProvince { get; set; }
-        public string? PresentMunicipality { get; set; }
-        public string? PresentBarangay { get; set; }
-        public string? PresentStreetOrPurok { get; set; }
-        public string? PermanentRegion { get; set; }
-        public string? PermanentProvince { get; set; }
-        public string? PermanentMunicipality { get; set; }
-        public string? PermanentBarangay { get; set; }
-        public string? PermanentStreetOrPurok { get; set; }
         public string Remarks { get; set; }
 
         public RecruiterDetail? RecruiterDetail { get; set; }
@@ -120,21 +104,7 @@ namespace Innovision.Core.Application.Requests.Users.Queries
               .ForMember(t => t.RefferralCode, f => f.MapFrom(src => src.RefferralCode))
               .ForMember(t => t.FmTypeId, f => f.MapFrom(src => src.FmTypeId))
 
-              .ForMember(t => t.Region, f => f.MapFrom(src => src.Region))
-              .ForMember(t => t.Province, f => f.MapFrom(src => src.Province))
-              .ForMember(t => t.Municipality, f => f.MapFrom(src => src.Municipality))
-              .ForMember(t => t.Barangay, f => f.MapFrom(src => src.Barangay))
-              .ForMember(t => t.StreetOrPurok, f => f.MapFrom(src => src.StreetOrPurok))
-              .ForMember(t => t.PresentRegion, f => f.MapFrom(src => src.PresentRegion))
-              .ForMember(t => t.PresentProvince, f => f.MapFrom(src => src.PresentProvince))
-              .ForMember(t => t.PresentMunicipality, f => f.MapFrom(src => src.PresentMunicipality))
-              .ForMember(t => t.PresentBarangay, f => f.MapFrom(src => src.PresentBarangay))
-              .ForMember(t => t.PresentStreetOrPurok, f => f.MapFrom(src => src.PresentStreetOrPurok))
-              .ForMember(t => t.PermanentRegion, f => f.MapFrom(src => src.PermanentRegion))
-              .ForMember(t => t.PermanentProvince, f => f.MapFrom(src => src.PermanentProvince))
-              .ForMember(t => t.PermanentMunicipality, f => f.MapFrom(src => src.PermanentMunicipality))
-              .ForMember(t => t.PermanentBarangay, f => f.MapFrom(src => src.PermanentBarangay))
-              .ForMember(t => t.PermanentStreetOrPurok, f => f.MapFrom(src => src.PermanentStreetOrPurok))
+
               .ForMember(t => t.Remarks, f => f.MapFrom(src => src.Remarks))
 
               .ForMember(t => t.AdministrativeExclusion, f => f.MapFrom(src => src.AdministrativeExclusions.Where(x => x.Status == 1).Any()))
