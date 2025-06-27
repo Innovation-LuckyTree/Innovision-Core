@@ -4,6 +4,7 @@ using Innovision.Core.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Innovision.Core.Persistence.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    partial class CoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250625235455_suffix_column")]
+    partial class suffix_column
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,6 +56,10 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Property<string>("BackIdPath")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Barangay")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("BirthDate")
                         .HasMaxLength(10)
@@ -126,9 +133,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Property<DateTime?>("LastSetPassword")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Level")
-                        .HasColumnType("integer");
-
                     b.Property<string>("MartialStatus")
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
@@ -146,6 +150,10 @@ namespace Innovision.Core.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<string>("Municipality")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<string>("Nationality")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
@@ -158,19 +166,57 @@ namespace Innovision.Core.Persistence.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
-                    b.Property<long?>("PermanentAddressId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("PermanentBarangay")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentMunicipality")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentProvince")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentRegion")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentStreetOrPurok")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("PlaceOfBirth")
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.Property<long?>("PresentAddressId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("PresentBarangay")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PresentMunicipality")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PresentProvince")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PresentRegion")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PresentStreetOrPurok")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("ProfilePath")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Province")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("RefferralCode")
                         .HasMaxLength(100)
@@ -180,16 +226,16 @@ namespace Innovision.Core.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<string>("Region")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<string>("Remarks")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
                     b.Property<int?>("SalaryRange")
                         .HasColumnType("integer");
-
-                    b.Property<string>("ScreenName")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("SelfiePath")
                         .HasMaxLength(255)
@@ -228,10 +274,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.HasKey("AccountInfoId");
 
                     b.HasIndex("BranchId");
-
-                    b.HasIndex("PermanentAddressId");
-
-                    b.HasIndex("PresentAddressId");
 
                     b.HasIndex("UserTypeId");
 
@@ -309,86 +351,6 @@ namespace Innovision.Core.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("AccountSetting", (string)null);
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.Address", b =>
-                {
-                    b.Property<long>("AddressId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("AddressId"));
-
-                    b.Property<string>("Barangay")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTimeOffset?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Municipality")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PermanentBarangay")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermanentMunicipality")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermanentProvince")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermanentRegion")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PermanentStreetOrPurok")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PresentBarangay")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PresentMunicipality")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PresentProvince")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PresentRegion")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PresentStreetOrPurok")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Province")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Region")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("StreetOrPurok")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.HasKey("AddressId");
-
-                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.AddressCode", b =>
@@ -605,80 +567,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.ToTable("BankReference", (string)null);
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.BetTransaction", b =>
-                {
-                    b.Property<long>("BetTransactionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("AccountInfoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("AmountBet")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("BetValue")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long?>("DrawResultId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsBonus")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<Guid?>("ItemId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTimeOffset?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("ReferenceId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("RoundReference")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TransactionType")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("Regular");
-
-                    b.Property<bool>("VoidTransaction")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime?>("VoidTransactionDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("WinAmount")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("BetTransactionId");
-
-                    b.HasIndex("AccountInfoId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("BetTransaction", (string)null);
-                });
-
             modelBuilder.Entity("Innovision.Core.Domain.Entity.BlockedUserHistory", b =>
                 {
                     b.Property<long>("BlockedUserHistoryId")
@@ -722,8 +610,9 @@ namespace Innovision.Core.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("BranchId"));
 
-                    b.Property<long?>("AddressId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Barangay")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<Guid?>("BranchBonusObjectId")
                         .HasColumnType("uuid");
@@ -770,9 +659,58 @@ namespace Innovision.Core.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.HasKey("BranchId");
+                    b.Property<string>("Municipality")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
-                    b.HasIndex("AddressId");
+                    b.Property<string>("PermanentBarangay")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentMunicipality")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentProvince")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentRegion")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PermanentStreetOrPurok")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PresentBarangay")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PresentMunicipality")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PresentProvince")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PresentRegion")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PresentStreetOrPurok")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Province")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Region")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("StreetOrPurok")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("BranchId");
 
                     b.ToTable("Branch", (string)null);
                 });
@@ -864,80 +802,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.ToTable("DepositStatus", (string)null);
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.DrawResult", b =>
-                {
-                    b.Property<long>("DrawResultId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("DrawResultId"));
-
-                    b.Property<int>("BettingTime")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<DateTime>("DrawDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("EndCutoff")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("EndCutoffEpoch")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTimeOffset?>("LastModified")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("NoOfWinners")
-                        .HasColumnType("integer");
-
-                    b.Property<long>("RoundId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("RoundReference")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("StartCutoff")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("StartCutoffEpoch")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("TotalBetAmount")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("TotalBetCount")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("WinAmount")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("DrawResultId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("DrawResult", (string)null);
-                });
-
             modelBuilder.Entity("Innovision.Core.Domain.Entity.FrequentlyAskQuestion", b =>
                 {
                     b.Property<int>("FrequentlyAskQuestionId")
@@ -1001,9 +865,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("CoverImage")
-                        .HasColumnType("text");
-
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("text");
@@ -1013,25 +874,10 @@ namespace Innovision.Core.Persistence.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
-
-                    b.Property<string>("ExternalGameId")
-                        .HasColumnType("text");
-
-                    b.Property<int>("GameCategoryId")
-                        .HasColumnType("integer");
 
                     b.Property<Guid>("GameObjectId")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("GameProviderId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GameStatusId")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsInternal")
-                        .HasColumnType("boolean");
-
                     b.Property<DateTimeOffset?>("LastModified")
                         .HasColumnType("timestamp with time zone");
 
@@ -1042,27 +888,58 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<int>("StandardMissedDraws")
+                        .HasColumnType("integer");
+
                     b.HasKey("GameId");
-
-                    b.HasIndex("GameCategoryId");
-
-                    b.HasIndex("GameProviderId");
-
-                    b.HasIndex("GameStatusId");
 
                     b.ToTable("Game", (string)null);
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameAppVersion", b =>
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameDrawType", b =>
                 {
-                    b.Property<long>("GameAppVersionId")
+                    b.Property<int>("GameDrawTypeId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GameDrawTypeId"));
+
+                    b.Property<TimeSpan>("DrawSchedule")
+                        .HasColumnType("interval");
+
+                    b.Property<string>("DrawTypeName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<TimeSpan>("EndCutOff")
+                        .HasColumnType("interval");
+
+                    b.Property<int>("GameTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<TimeSpan>("StartCutOff")
+                        .HasColumnType("interval");
+
+                    b.HasKey("GameDrawTypeId");
+
+                    b.HasIndex("GameTypeId");
+
+                    b.ToTable("GameDrawTypes");
+                });
+
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameType", b =>
+                {
+                    b.Property<int>("GameTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1L)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("GameAppVersionId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GameTypeId"));
+
+                    b.Property<decimal>("CardPrice")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -1071,11 +948,17 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool>("ForceRefresh")
-                        .HasColumnType("boolean");
-
                     b.Property<int>("GameId")
                         .HasColumnType("integer");
+
+                    b.Property<int>("GameReferenceId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("GameTypeDesciption")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GameTypeName")
+                        .HasColumnType("text");
 
                     b.Property<DateTimeOffset?>("LastModified")
                         .HasColumnType("timestamp with time zone");
@@ -1084,158 +967,11 @@ namespace Innovision.Core.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ReleaseNotes")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Version")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("GameAppVersionId");
+                    b.HasKey("GameTypeId");
 
                     b.HasIndex("GameId");
 
-                    b.HasIndex("Status");
-
-                    b.ToTable("GameApplicationVersion", (string)null);
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameAppVersionStatus", b =>
-                {
-                    b.Property<int>("StatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("StatusId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("StatusId");
-
-                    b.ToTable("GameAppVersionStatus", (string)null);
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameCatalog", b =>
-                {
-                    b.Property<long>("GameCatalogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("GameCatalogId"));
-
-                    b.Property<int>("GameCategoryId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("GameCatalogId");
-
-                    b.HasIndex("GameCategoryId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("GameCatalogs", (string)null);
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameCategory", b =>
-                {
-                    b.Property<int>("GameCategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GameCategoryId"));
-
-                    b.Property<string>("CoverImage")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("GameCategoryId");
-
-                    b.ToTable("GameCategory", (string)null);
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameProvider", b =>
-                {
-                    b.Property<int>("GameProviderId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GameProviderId"));
-
-                    b.Property<string>("Configuration")
-                        .HasColumnType("text");
-
-                    b.Property<string>("CoverImage")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("GameCategoryId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("GameProviderUuid")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsExternal")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("GameProviderId");
-
-                    b.HasIndex("GameCategoryId");
-
-                    b.ToTable("GameProvider", (string)null);
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameStatus", b =>
-                {
-                    b.Property<int>("GameStatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GameStatusId"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("GameStatusId");
-
-                    b.ToTable("GameStatus", (string)null);
+                    b.ToTable("GameType", (string)null);
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.JackpotWinner", b =>
@@ -1253,9 +989,6 @@ namespace Innovision.Core.Persistence.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<long?>("ApproverAccountId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("BetTransactionId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("BetValue")
@@ -1291,6 +1024,9 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Property<long>("GameScheduleId")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("GameTypeId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("GameTypeName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -1313,6 +1049,9 @@ namespace Innovision.Core.Persistence.Migrations
 
                     b.Property<int>("NumberOfWinners")
                         .HasColumnType("integer");
+
+                    b.Property<long>("OrderItemId")
+                        .HasColumnType("bigint");
 
                     b.Property<decimal>("PrizePoolAmount")
                         .HasColumnType("numeric");
@@ -1342,12 +1081,14 @@ namespace Innovision.Core.Persistence.Migrations
 
                     b.HasIndex("ApproverAccountId");
 
-                    b.HasIndex("BetTransactionId")
-                        .IsUnique();
-
                     b.HasIndex("GameId");
 
+                    b.HasIndex("GameTypeId");
+
                     b.HasIndex("JackpotWinnerStatusId");
+
+                    b.HasIndex("OrderItemId")
+                        .IsUnique();
 
                     b.HasIndex("ReleaserAccountId");
 
@@ -1435,7 +1176,7 @@ namespace Innovision.Core.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LiveStreamId"));
 
-                    b.Property<int?>("BranchId")
+                    b.Property<int>("BranchId")
                         .HasColumnType("integer");
 
                     b.Property<string>("CreatedBy")
@@ -1447,9 +1188,6 @@ namespace Innovision.Core.Persistence.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("integer");
 
                     b.Property<DateTimeOffset?>("LastModified")
                         .HasColumnType("timestamp with time zone");
@@ -1469,8 +1207,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.HasKey("LiveStreamId");
 
                     b.HasIndex("BranchId");
-
-                    b.HasIndex("GameId");
 
                     b.ToTable("LiveStream", (string)null);
                 });
@@ -1605,6 +1341,156 @@ namespace Innovision.Core.Persistence.Migrations
                     b.HasKey("OtpID");
 
                     b.ToTable("OTP", (string)null);
+                });
+
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.Order", b =>
+                {
+                    b.Property<long>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("OrderId"));
+
+                    b.Property<long>("AccountInfoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("CommissionStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsBonus")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTimeOffset?>("LastModified")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("TotalNoOfItems")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("TransactionNo")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("AccountInfoId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("Order", (string)null);
+                });
+
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.OrderItem", b =>
+                {
+                    b.Property<long>("OrderItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("OrderItemId"));
+
+                    b.Property<long>("AccountInfoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("AmountBet")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("BetItemType")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
+
+                    b.Property<int>("CompanyGameId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset?>("DrawDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DrawTime")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("ExcessAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("GameTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("HasExcessAmount")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsBonus")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<Guid?>("ItemId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTimeOffset?>("LastModified")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("OrderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("Used")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset?>("UsedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Values")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("OrderItemId");
+
+                    b.HasIndex("AccountInfoId");
+
+                    b.HasIndex("GameTypeId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItem", (string)null);
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.PaymentMethod", b =>
@@ -2090,16 +1976,6 @@ namespace Innovision.Core.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Innovision.Core.Domain.Entity.Address", "PermanentAddress")
-                        .WithMany("PermanentAccountAddresses")
-                        .HasForeignKey("PermanentAddressId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.HasOne("Innovision.Core.Domain.Entity.Address", "PresentAddress")
-                        .WithMany("PresentAccountAddresses")
-                        .HasForeignKey("PresentAddressId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("Innovision.Core.Domain.Entity.UserType", "UserType")
                         .WithMany("Accounts")
                         .HasForeignKey("UserTypeId")
@@ -2107,10 +1983,6 @@ namespace Innovision.Core.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Branch");
-
-                    b.Navigation("PermanentAddress");
-
-                    b.Navigation("PresentAddress");
 
                     b.Navigation("UserType");
                 });
@@ -2169,33 +2041,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Navigation("Branch");
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.BetTransaction", b =>
-                {
-                    b.HasOne("Innovision.Core.Domain.Entity.Account", "AccountInfo")
-                        .WithMany("BetTransactions")
-                        .HasForeignKey("AccountInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Innovision.Core.Domain.Entity.DrawResult", "DrawResult")
-                        .WithMany("BetTransactions")
-                        .HasForeignKey("BetTransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
-                        .WithMany("BetTransactions")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AccountInfo");
-
-                    b.Navigation("DrawResult");
-
-                    b.Navigation("Game");
-                });
-
             modelBuilder.Entity("Innovision.Core.Domain.Entity.BlockedUserHistory", b =>
                 {
                     b.HasOne("Innovision.Core.Domain.Entity.Account", "Account")
@@ -2205,16 +2050,6 @@ namespace Innovision.Core.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.Branch", b =>
-                {
-                    b.HasOne("Innovision.Core.Domain.Entity.Address", "Address")
-                        .WithMany("Branches")
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.Deposit", b =>
@@ -2244,17 +2079,6 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Navigation("PaymentMethod");
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.DrawResult", b =>
-                {
-                    b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
-                        .WithMany("DrawResults")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-                });
-
             modelBuilder.Entity("Innovision.Core.Domain.Entity.FrequentlyAskQuestion", b =>
                 {
                     b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
@@ -2266,76 +2090,26 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Navigation("Game");
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.Game", b =>
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameDrawType", b =>
                 {
-                    b.HasOne("Innovision.Core.Domain.Entity.GameCategory", "GameCategory")
-                        .WithMany("Games")
-                        .HasForeignKey("GameCategoryId")
+                    b.HasOne("Innovision.Core.Domain.Entity.GameType", "GameType")
+                        .WithMany()
+                        .HasForeignKey("GameTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Innovision.Core.Domain.Entity.GameProvider", "GameProvider")
-                        .WithMany("Games")
-                        .HasForeignKey("GameProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Innovision.Core.Domain.Entity.GameStatus", "GameStatus")
-                        .WithMany("Games")
-                        .HasForeignKey("GameStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GameCategory");
-
-                    b.Navigation("GameProvider");
-
-                    b.Navigation("GameStatus");
+                    b.Navigation("GameType");
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameAppVersion", b =>
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameType", b =>
                 {
                     b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
-                        .WithMany("GameAppVersions")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Innovision.Core.Domain.Entity.GameAppVersionStatus", "GameAppVersionStatus")
-                        .WithMany("GameAppVersions")
-                        .HasForeignKey("Status")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("GameAppVersionStatus");
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameCatalog", b =>
-                {
-                    b.HasOne("Innovision.Core.Domain.Entity.GameCategory", "GameCategory")
-                        .WithMany("GameCatalogs")
-                        .HasForeignKey("GameCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
-                        .WithMany("GameCatalogs")
+                        .WithMany("GameTypes")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Game");
-
-                    b.Navigation("GameCategory");
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameProvider", b =>
-                {
-                    b.HasOne("Innovision.Core.Domain.Entity.GameCategory", null)
-                        .WithMany("GameProviders")
-                        .HasForeignKey("GameCategoryId");
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.JackpotWinner", b =>
@@ -2350,21 +2124,27 @@ namespace Innovision.Core.Persistence.Migrations
                         .WithMany("ApprovedJackpotWinners")
                         .HasForeignKey("ApproverAccountId");
 
-                    b.HasOne("Innovision.Core.Domain.Entity.BetTransaction", "BetTransaction")
-                        .WithOne("JackpotWinner")
-                        .HasForeignKey("Innovision.Core.Domain.Entity.JackpotWinner", "BetTransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
                         .WithMany("JackpotWinners")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Innovision.Core.Domain.Entity.GameType", "GameType")
+                        .WithMany("JackpotWinners")
+                        .HasForeignKey("GameTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Innovision.Core.Domain.Entity.JackpotWinnerStatus", "JackpotWinnerStatus")
                         .WithMany("JackpotWinners")
                         .HasForeignKey("JackpotWinnerStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Innovision.Core.Domain.Entity.OrderItem", "OrderItem")
+                        .WithOne("JackpotWinner")
+                        .HasForeignKey("Innovision.Core.Domain.Entity.JackpotWinner", "OrderItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2376,11 +2156,13 @@ namespace Innovision.Core.Persistence.Migrations
 
                     b.Navigation("ApproverAccount");
 
-                    b.Navigation("BetTransaction");
-
                     b.Navigation("Game");
 
+                    b.Navigation("GameType");
+
                     b.Navigation("JackpotWinnerStatus");
+
+                    b.Navigation("OrderItem");
 
                     b.Navigation("ReleaserAccount");
                 });
@@ -2398,17 +2180,13 @@ namespace Innovision.Core.Persistence.Migrations
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.LiveStream", b =>
                 {
-                    b.HasOne("Innovision.Core.Domain.Entity.Branch", null)
+                    b.HasOne("Innovision.Core.Domain.Entity.Branch", "Branch")
                         .WithMany("LiveStreams")
-                        .HasForeignKey("BranchId");
-
-                    b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
-                        .WithMany("LiveStreams")
-                        .HasForeignKey("GameId")
+                        .HasForeignKey("BranchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Game");
+                    b.Navigation("Branch");
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.Notification", b =>
@@ -2428,6 +2206,52 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Navigation("Account");
 
                     b.Navigation("NotificationType");
+                });
+
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.Order", b =>
+                {
+                    b.HasOne("Innovision.Core.Domain.Entity.Account", "AccountInfo")
+                        .WithMany("Orders")
+                        .HasForeignKey("AccountInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Innovision.Core.Domain.Entity.Game", "Game")
+                        .WithMany("Orders")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AccountInfo");
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.OrderItem", b =>
+                {
+                    b.HasOne("Innovision.Core.Domain.Entity.Account", "AccountInfo")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("AccountInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Innovision.Core.Domain.Entity.GameType", "GameType")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("GameTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Innovision.Core.Domain.Entity.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AccountInfo");
+
+                    b.Navigation("GameType");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.PlayerActivity", b =>
@@ -2523,8 +2347,6 @@ namespace Innovision.Core.Persistence.Migrations
 
                     b.Navigation("ApprovedJackpotWinners");
 
-                    b.Navigation("BetTransactions");
-
                     b.Navigation("BlockedUserHistories");
 
                     b.Navigation("Deposits");
@@ -2532,6 +2354,10 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Navigation("JackpotWinners");
 
                     b.Navigation("Notifications");
+
+                    b.Navigation("OrderItems");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("PlayerActivities");
 
@@ -2546,24 +2372,9 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Navigation("Withdrawals");
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.Address", b =>
-                {
-                    b.Navigation("Branches");
-
-                    b.Navigation("PermanentAccountAddresses");
-
-                    b.Navigation("PresentAccountAddresses");
-                });
-
             modelBuilder.Entity("Innovision.Core.Domain.Entity.BankReference", b =>
                 {
                     b.Navigation("Withdrawals");
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.BetTransaction", b =>
-                {
-                    b.Navigation("JackpotWinner")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.Branch", b =>
@@ -2580,50 +2391,22 @@ namespace Innovision.Core.Persistence.Migrations
                     b.Navigation("Deposits");
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.DrawResult", b =>
-                {
-                    b.Navigation("BetTransactions");
-                });
-
             modelBuilder.Entity("Innovision.Core.Domain.Entity.Game", b =>
                 {
-                    b.Navigation("BetTransactions");
-
-                    b.Navigation("DrawResults");
-
                     b.Navigation("FrequentlyAskQuestions");
 
-                    b.Navigation("GameAppVersions");
-
-                    b.Navigation("GameCatalogs");
+                    b.Navigation("GameTypes");
 
                     b.Navigation("JackpotWinners");
 
-                    b.Navigation("LiveStreams");
+                    b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameAppVersionStatus", b =>
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameType", b =>
                 {
-                    b.Navigation("GameAppVersions");
-                });
+                    b.Navigation("JackpotWinners");
 
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameCategory", b =>
-                {
-                    b.Navigation("GameCatalogs");
-
-                    b.Navigation("GameProviders");
-
-                    b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameProvider", b =>
-                {
-                    b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("Innovision.Core.Domain.Entity.GameStatus", b =>
-                {
-                    b.Navigation("Games");
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.JackpotWinner", b =>
@@ -2639,6 +2422,17 @@ namespace Innovision.Core.Persistence.Migrations
             modelBuilder.Entity("Innovision.Core.Domain.Entity.NotificationType", b =>
                 {
                     b.Navigation("Notifications");
+                });
+
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.Order", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("Innovision.Core.Domain.Entity.OrderItem", b =>
+                {
+                    b.Navigation("JackpotWinner")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Innovision.Core.Domain.Entity.PaymentMethod", b =>
