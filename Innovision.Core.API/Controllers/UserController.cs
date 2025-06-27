@@ -11,6 +11,7 @@ using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Commands.UpdateU
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlineCounts;
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlinePlayers;
 using Innovision.Core.Application.Requests.Users.Commands.BasicRegistration;
+using Innovision.Core.Application.Requests.Users.Commands.BasicVerification;
 using Innovision.Core.Application.Requests.Users.Commands.BulkCreateUser;
 using Innovision.Core.Application.Requests.Users.Commands.CreateSystemUser;
 using Innovision.Core.Application.Requests.Users.Commands.UpdateAddress;
@@ -59,7 +60,9 @@ public class UserController : ApiBaseController
     }
 
     /// <summary>
+    /// 
     /// Player basic registration
+    /// 
     /// </summary>
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
@@ -67,6 +70,21 @@ public class UserController : ApiBaseController
     [HttpPost("basic/registration")]
     [AllowAnonymous]
     public async Task<ActionResult> Post([FromBody] BasicRegistrationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
+
+    /// <summary>
+    /// 
+    /// Player basic verification
+    /// 
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("basic/verification")]
+    public async Task<ActionResult> Post([FromBody] BasicVerificationCommand command, CancellationToken cancellationToken)
     {
         var result = await Mediator.Send(command, cancellationToken);
         return (result.Success) ? Ok(result) : BadRequest(result);

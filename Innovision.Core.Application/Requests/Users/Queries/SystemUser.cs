@@ -20,9 +20,11 @@ namespace Innovision.Core.Application.Requests.Users.Queries
         public int FmTypeId { get; set; }
         public string FMTypeName { get; set; }
 
+        public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
+        public string Suffix { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
@@ -49,22 +51,6 @@ namespace Innovision.Core.Application.Requests.Users.Queries
 
         public int RoleId { get; set; }
         public string RoleName { get; set; }
-
-        public string? Region { get; set; }
-        public string? Province { get; set; }
-        public string? Municipality { get; set; }
-        public string? Barangay { get; set; }
-        public string? StreetOrPurok { get; set; }
-        public string? PresentRegion { get; set; }
-        public string? PresentProvince { get; set; }
-        public string? PresentMunicipality { get; set; }
-        public string? PresentBarangay { get; set; }
-        public string? PresentStreetOrPurok { get; set; }
-        public string? PermanentRegion { get; set; }
-        public string? PermanentProvince { get; set; }
-        public string? PermanentMunicipality { get; set; }
-        public string? PermanentBarangay { get; set; }
-        public string? PermanentStreetOrPurok { get; set; }
         public string Remarks { get; set; }
 
         public RecruiterDetail? RecruiterDetail { get; set; }
@@ -100,6 +86,8 @@ namespace Innovision.Core.Application.Requests.Users.Queries
               .ForMember(t => t.FirstName, f => f.MapFrom(src => src.FirstName))
               .ForMember(t => t.LastName, f => f.MapFrom(src => src.LastName))
               .ForMember(t => t.MiddleName, f => f.MapFrom(src => src.MiddleName))
+              .ForMember(t => t.UserName, f => f.MapFrom(src => src.UserName))
+              .ForMember(t => t.Suffix, f => f.MapFrom(src => src.Suffix))
               .ForMember(t => t.Email, f => f.MapFrom(src => src.Email))
               .ForMember(t => t.Age, f => f.MapFrom(src => src.Age))
               .ForMember(t => t.Gender, f => f.MapFrom(src => src.Gender))
@@ -120,16 +108,6 @@ namespace Innovision.Core.Application.Requests.Users.Queries
               .ForMember(t => t.RefferralCode, f => f.MapFrom(src => src.RefferralCode))
               .ForMember(t => t.FmTypeId, f => f.MapFrom(src => src.FmTypeId))
 
-              .ForMember(t => t.Region, f => f.MapFrom(src => src.PresentAddress.Region))
-              .ForMember(t => t.Province, f => f.MapFrom(src => src.PresentAddress.Province))
-              .ForMember(t => t.Municipality, f => f.MapFrom(src => src.PresentAddress.Municipality))
-              .ForMember(t => t.Barangay, f => f.MapFrom(src => src.PresentAddress.Barangay))
-              .ForMember(t => t.StreetOrPurok, f => f.MapFrom(src => src.PresentAddress.StreetOrPurok))
-              .ForMember(t => t.PermanentRegion, f => f.MapFrom(src => src.PermanentAddress.Region))
-              .ForMember(t => t.PermanentProvince, f => f.MapFrom(src => src.PermanentAddress.Province))
-              .ForMember(t => t.PermanentMunicipality, f => f.MapFrom(src => src.PermanentAddress.Municipality))
-              .ForMember(t => t.PermanentBarangay, f => f.MapFrom(src => src.PermanentAddress.Barangay))
-              .ForMember(t => t.PermanentStreetOrPurok, f => f.MapFrom(src => src.PermanentAddress.StreetOrPurok))
               .ForMember(t => t.Remarks, f => f.MapFrom(src => src.Remarks))
 
               .ForMember(t => t.AdministrativeExclusion, f => f.MapFrom(src => src.AdministrativeExclusions.Where(x => x.Status == 1).Any()))
