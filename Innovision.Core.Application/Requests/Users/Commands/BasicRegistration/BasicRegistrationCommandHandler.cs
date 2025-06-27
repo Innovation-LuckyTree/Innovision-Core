@@ -3,7 +3,6 @@ using Innovision.Core.Application.Common.Contants;
 using Innovision.Core.Application.Common.Services;
 using Innovision.Core.Application.Interfaces;
 using Innovision.Core.Application.Notifications.MessageBrokers;
-using Innovision.Core.Application.Requests.Accounts.Commands.AddToUserIdentityWIthCredential;
 using Innovision.Core.Domain.Entity;
 using MediatR;
 
@@ -53,8 +52,8 @@ public class BasicRegistrationCommandHandler(ICoreDbContext dbContext, IMediator
             UserName = request.UserName,
             Commision = 0,
             SalaryRange = null,
-            FirstName = (request.FullName.Split().Length > 0) ? request.FullName.Split()[0] : string.Empty,
-            LastName = (request.FullName.Split().Length > 1) ? request.FullName.Split()[1] : string.Empty,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
             IsActive = true,
             AccountStatusId = Domain.Enums.AccountStatus.Approved,
             UserTypeId = Domain.Enums.UserTypes.Player,

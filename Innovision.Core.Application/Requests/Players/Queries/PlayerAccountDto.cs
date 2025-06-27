@@ -13,6 +13,7 @@ public class PlayerAccountDto : IMapFrom<Account>
     public Guid AccountBonusId { get; set; }
     public Guid UserId { get; set; }
     public string PaymentAccount { get; set; }
+    public string UserName { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string MiddleName { get; set; }
@@ -24,8 +25,11 @@ public class PlayerAccountDto : IMapFrom<Account>
     public bool ForVerification { get; set; }
     public int BranchId { get; set; }
     public string BranchName { get; set; }
-    [JsonIgnore]
-    public DateTimeOffset? LastSetPassword { get; set; }
+    public string ScreenName { get; set; }
+    public int Level { get; set; } = 1;
+
+    // [JsonIgnore]
+    // public DateTimeOffset? LastSetPassword { get; set; }
     [JsonIgnore]
     public DateTimeOffset DateCreated { get; set; }
     [JsonIgnore]
@@ -50,13 +54,13 @@ public class PlayerAccountDto : IMapFrom<Account>
         }
     }
 
-    public DateTimeOffset LastPasswordChange
-    {
-        get
-        {
-            return LastSetPassword ?? DateCreated;
-        }
-    }
+    // public DateTimeOffset LastPasswordChange
+    // {
+    //     get
+    //     {
+    //         return LastSetPassword ?? DateCreated;
+    //     }
+    // }
 
     public void Mapping(Profile profile)
     {
@@ -66,6 +70,9 @@ public class PlayerAccountDto : IMapFrom<Account>
             .ForMember(t => t.AccountCreditId, f => f.MapFrom(src => src.AccountCreditId))
             .ForMember(t => t.AccountBonusId, f => f.MapFrom(src => src.AccountBonusId))
             .ForMember(t => t.UserId, f => f.MapFrom(src => src.UserId))
+            .ForMember(t => t.UserName, f => f.MapFrom(src => src.UserName))
+            .ForMember(t => t.ScreenName, f => f.MapFrom(src => src.ScreenName))
+            .ForMember(t => t.Level, f => f.MapFrom(src => src.Level))
             .ForMember(t => t.FirstName, f => f.MapFrom(src => src.FirstName))
             .ForMember(t => t.LastName, f => f.MapFrom(src => src.LastName))
             .ForMember(t => t.MiddleName, f => f.MapFrom(src => src.MiddleName))
@@ -82,7 +89,7 @@ public class PlayerAccountDto : IMapFrom<Account>
             .ForMember(t => t.IsVerified, f => f.MapFrom(src => src.IsVerified))
             .ForMember(t => t.IsDeclined, f => f.MapFrom(src => src.IsDeclined))
             .ForMember(t => t.ForVerification, f => f.MapFrom(src => src.ForVerification))
-            .ForMember(t => t.LastSetPassword, f => f.MapFrom(src => src.LastSetPassword))
+            // .ForMember(t => t.LastSetPassword, f => f.MapFrom(src => src.LastSetPassword))
             .ForMember(t => t.DateCreated, f => f.MapFrom(src => src.CreatedOn));
     }
 }

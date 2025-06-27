@@ -9,18 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Innovision.Core.Application.Requests.Players.Queries.GetCurrentUser;
 
-public class GetCurrentUserQueryHandler : IRequestHandler<GetCurrentUserQuery, PlayerAccountDto>
+public class GetCurrentUserQueryHandler(ICurrentUserService currentUserService, IMapper mapper, ICoreDbContext dbContext) : IRequestHandler<GetCurrentUserQuery, PlayerAccountDto>
 {
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IMapper _mapper;
-    private readonly ICoreDbContext _dbContext;
-
-    public GetCurrentUserQueryHandler(ICurrentUserService currentUserService, IMapper mapper, ICoreDbContext dbContext)
-    {
-        _currentUserService = currentUserService;
-        _mapper = mapper;
-        _dbContext = dbContext;
-    }
+    private readonly ICurrentUserService _currentUserService = currentUserService;
+    private readonly IMapper _mapper = mapper;
+    private readonly ICoreDbContext _dbContext = dbContext;
 
     public async Task<PlayerAccountDto> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
     {

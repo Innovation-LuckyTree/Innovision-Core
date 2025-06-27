@@ -9,5 +9,6 @@ public class BasicRegistrationCommand : IRequest<ApiResponse<Guid>>
     public string MobileNumber { get; set; }
     public string? ReferralCode { get; set; }
     public string Password { get; set; }
-    public string FullName { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 }
