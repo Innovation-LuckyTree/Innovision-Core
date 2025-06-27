@@ -13,9 +13,24 @@ public class GetGameProviderListQueryHandler(ICoreDbContext dbContext, IMapper m
 
     public async Task<GameProviderVm> Handle(GetGameProviderListQuery request, CancellationToken cancellationToken)
     {
-        var gameProviders = await _dbContext.GameProviders.ProjectTo<GameProvidersDto>(_mapper.ConfigurationProvider)
+        if (request.CategoryId == 0)
+        {
+            // If a specific category is requested, filter by that category
+            var allProviders = await _dbContext.GameProviders
+                .ProjectTo<GameProvidersDto>(_mapper.ConfigurationProvider)
+                .ToListAsync(cancellationToken);
+
+            return new GameProviderVm(allProviders);
+        }
+
+        var gamesProviderByCategory = await _dbContext.Games
+            .Where(o => o.GameCatalogs.Any(c => c.GameCategoryId == request.CategoryId))
+            .Select(g => g.GameProvider)
+            .Distinct()
+            .AsNoTracking()
+            .ProjectTo<GameProvidersDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 
-        return new GameProviderVm(gameProviders);
+        return new GameProviderVm(gamesProviderByCategory);
     }
 }

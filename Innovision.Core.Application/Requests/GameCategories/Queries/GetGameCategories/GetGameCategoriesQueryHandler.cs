@@ -13,7 +13,8 @@ public class GetGameCategoriesQueryHandler(ICoreDbContext dbContext, IMapper map
 
     public async Task<GameCategoryVm> Handle(GetGameCategoriesQuery request, CancellationToken cancellationToken)
     {
-        var gameCategories = await _dbContext.GameProviders.ProjectTo<GameCategoryDto>(_mapper.ConfigurationProvider)
+        var gameCategories = await _dbContext.GameCategories
+            .ProjectTo<GameCategoryDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 
         return new GameCategoryVm(gameCategories);

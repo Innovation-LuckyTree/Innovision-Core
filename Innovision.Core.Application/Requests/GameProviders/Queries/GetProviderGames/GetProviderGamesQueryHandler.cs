@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Innovision.Core.Application.Requests.GameProviders.Queries;
 
-public class GetGameProviderListByCategoryIdQueryHandler(ICoreDbContext dbContext, IMapper mapper) : IRequestHandler<GetGameProviderListByCategoryIdQuery, GameProviderVm>
+public class GetProviderGamesQueryHandler(ICoreDbContext dbContext, IMapper mapper) : IRequestHandler<GetProviderGamesQuery, GameProviderVm>
 {
     private readonly ICoreDbContext _dbContext = dbContext;
     private readonly IMapper _mapper = mapper;
 
-    public async Task<GameProviderVm> Handle(GetGameProviderListByCategoryIdQuery request, CancellationToken cancellationToken)
+    public async Task<GameProviderVm> Handle(GetProviderGamesQuery request, CancellationToken cancellationToken)
     {
         var gameProviders = await _dbContext.GameCatalogs
             .Where(x => x.GameCatalogId == request.GameCategoryId)
