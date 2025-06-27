@@ -6,4 +6,5 @@ namespace Innovision.Core.Application.Requests.Accounts.Commands.AddAccountToUse
 public class AddAccountToUserIdentityCommand : IRequest<CreateUserResponse>
 {
     public Guid AccountInfoId { get; set; }
+    public string Password { get; set; }
 }

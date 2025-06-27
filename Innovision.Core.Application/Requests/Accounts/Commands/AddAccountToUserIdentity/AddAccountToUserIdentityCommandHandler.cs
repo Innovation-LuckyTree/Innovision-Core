@@ -39,17 +39,10 @@ public class AddAccountToUserIdentityCommandHandler(ICoreDbContext dbContext, IA
         }
 
         var createUserRequest = new CreateUserRequest(account.MobileNumber ?? account.Email, account.Email ?? "", account.MobileNumber,
-            string.Empty, account.UserTypeId, account.IsMain, appId, "");
+            request.Password ?? string.Empty, account.UserTypeId, account.IsMain, appId, "");
 
         var response = await _coreIdentityApi.CreateUserIdentity(createUserRequest, cancellationToken);
         if (response.IdNumber == 0) throw new Exception("Failed to create user identity!");
-
-        var paymentProviderResponse = await _accountServiceApi.CreatePaymentAccount(new CreateAccountRequest($"{account.FirstName} {account.LastName}", account.Email ?? "", account.MobileNumber), cancellationToken);
-
-        if (paymentProviderResponse?.Data?.Data != null)
-        {
-            account.PaymentAccountId = paymentProviderResponse.Data.Data.Id;
-        }
 
         account.AccountStatusId = userStatus;
         account.UserId = response.Id;

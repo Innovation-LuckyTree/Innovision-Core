@@ -3,6 +3,8 @@ using Innovision.Core.Application.Common.Contants;
 using Innovision.Core.Application.Common.Services;
 using Innovision.Core.Application.Interfaces;
 using Innovision.Core.Application.Notifications.MessageBrokers;
+using Innovision.Core.Application.Requests.Accounts.Commands.AddAccountToUserIdentity;
+using Innovision.Core.Application.Requests.Accounts.Commands.AddToUserIdentityWIthCredential;
 using Innovision.Core.Domain.Entity;
 using MediatR;
 
@@ -30,7 +32,9 @@ public class BasicRegistrationCommandHandler(ICoreDbContext dbContext, IMediator
             _dbContext.Accounts.Add(accountInfo);
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            await _mediator.Publish(new AddAccountMigrationNotification(accountInfo.AccountObjectId), cancellationToken).ConfigureAwait(false);
+            // Publish notification for account migration
+            // await _mediator.Publish(new AddAccountMigrationNotification(accountInfo.AccountObjectId), cancellationToken).ConfigureAwait(false);
+            await _mediator.Send(new AddToIdentityWIthCredCommand(accountInfo.AccountObjectId, request.Password), cancellationToken);
 
             return new ApiResponse<Guid>() { Data = accountInfo.AccountObjectId };
         }
@@ -62,4 +66,8 @@ public class BasicRegistrationCommandHandler(ICoreDbContext dbContext, IMediator
             IsMain = false,
             ScreenName = request.UserName
         };
+}
+
+internal class GetAccountMigrationStatusQuery : IRequest<object>
+{
 }

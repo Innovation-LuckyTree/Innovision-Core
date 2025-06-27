@@ -15,9 +15,17 @@ public class GetGamesByProviderAndCategoryQueryHandler(ICoreDbContext dbContext,
 
     public async Task<GameVm> Handle(GetGamesByProviderAndCategoryQuery request, CancellationToken cancellationToken)
     {
-        var gamesQuery = _dbContext.Games
-            .Where(x => x.GameProviderId == request.GameProviderId && x.GameCatalogs.Any(c => c.GameCategoryId == request.GameCategoryId))
-            .OrderBy(o => o.Name);
+        var gamesQuery = _dbContext.Games.AsQueryable();
+
+        if (request.GameCategoryId > 0)
+        {
+            gamesQuery = gamesQuery.Where(x => x.GameCatalogs.Any(c => c.GameCategoryId == request.GameCategoryId));
+        }
+
+        if (request.GameProviderId > 0)
+        {
+            gamesQuery = gamesQuery.Where(x => x.GameProviderId == request.GameProviderId);
+        }
 
         var games = await GetGamesByProviderAndCategory(gamesQuery, request.Query ?? new PagedQuery())
             .ProjectTo<GameDto>(_mapper.ConfigurationProvider)

@@ -19,7 +19,7 @@ public class GetUserTokenCommandHandler(ICoreDbContext dbContext, ICoreIdentityA
             var accInfo = await _dbContext.Accounts
                 .Include(m => m.UserType)
                 .Include(m => m.Branch)
-                .Where(o => (o.MobileNumber == request.UserName || o.Email == request.UserName)
+                .Where(o => (o.MobileNumber == request.UserName || o.Email == request.UserName || request.UserName == o.UserName)
                     && o.UserTypeId != Domain.Enums.UserTypes.Player && o.IsActive)
                 .ToListAsync(cancellationToken);
 
