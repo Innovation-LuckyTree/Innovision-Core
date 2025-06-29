@@ -11,6 +11,7 @@ using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Commands.UpdateU
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlineCounts;
 using Innovision.Core.Application.Requests.Users.AgentAndPlayer.Queries.GetDownlinePlayers;
 using Innovision.Core.Application.Requests.Users.Commands.BasicRegistration;
+using Innovision.Core.Application.Requests.Users.Commands.BasicUpdateUser;
 using Innovision.Core.Application.Requests.Users.Commands.BasicVerification;
 using Innovision.Core.Application.Requests.Users.Commands.BulkCreateUser;
 using Innovision.Core.Application.Requests.Users.Commands.CreateSystemUser;
@@ -113,6 +114,19 @@ public class UserController : ApiBaseController
     [HttpPost("update/getverified")]
     [AllowAnonymous]
     public async Task<ActionResult> UpdateUserByAccountObjectId([FromBody] UpdateUserByAccountObjectIdCommand command, CancellationToken cancellationToken)
+    {
+        var result = await Mediator.Send(command, cancellationToken);
+        return (result.Success) ? Ok(result) : BadRequest(result);
+    }
+
+    /// <summary>
+    /// Update user basic information
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    [HttpPatch("basic/update")]
+    public async Task<ActionResult> BasicUpdateUser(BasicUpdateUserCommand command, CancellationToken cancellationToken)
     {
         var result = await Mediator.Send(command, cancellationToken);
         return (result.Success) ? Ok(result) : BadRequest(result);

@@ -31,12 +31,12 @@ app.UseEndpoints(endpoints =>
 app.UseSwagger(options => options.RouteTemplate = "swagger/{documentName}/swagger.json");
 app.UseSwaggerUI();
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<CoreDbContext>();
-    await DbSeeder.SeedAsync(context);
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    var context = services.GetRequiredService<CoreDbContext>();
+//    await DbSeeder.SeedAsync(context);
+//}
 
 // app.UseHttpsRedirection();
 
